@@ -1,7 +1,7 @@
 import { REDIRECT_URI, CLIENT_ID } from '@/utils/constants';
 import axios from 'axios';
 
-export const authLinerUrl = `https://linear.app/oauth/authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=admin`;
+export const authLinerUrl = `https://linear.app/oauth/authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=https://linear-amber.vercel.app/auth&scope=admin`;
 export const jwtUri = 'http://localhost:4000';
 export const api = axios.create({
 	baseURL:authLinerUrl,
