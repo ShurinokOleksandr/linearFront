@@ -1,4 +1,4 @@
-import { REDIRECT_URI, CLIENT_ID } from '@/utils/constants';
+import { CLIENT_ID } from '@/utils/constants';
 import axios from 'axios';
 
 export const authLinerUrl = `https://linear.app/oauth/authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=https://linear-amber.vercel.app/auth&scope=admin`;
