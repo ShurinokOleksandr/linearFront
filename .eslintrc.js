@@ -7,11 +7,6 @@ module.exports = {
 				'order': 'desc'
 			}
 		],
-		'linebreak-style': [
-			'error',
-			'windows'
-		],
-
 		'object-curly-spacing': ['error', 'always'],
 		'quotes': [
 			'error',
