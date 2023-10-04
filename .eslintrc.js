@@ -11,7 +11,7 @@ module.exports = {
 			'error',
 			'windows'
 		],
-		'eslint linebreak-style': ['error', 'windows'],
+
 		'object-curly-spacing': ['error', 'always'],
 		'quotes': [
 			'error',
@@ -22,8 +22,9 @@ module.exports = {
 			'always'
 		],
 		'react/react-in-jsx-scope':'off',
-		'indent': ['error', 'tab']
+		'indent': ['error', 'tab'],
 	},
+
 	'overrides': [
 		{
 			'parserOptions': {
@@ -43,10 +44,7 @@ module.exports = {
 		'plugin:react/recommended',
 		'plugin:perfectionist/recommended-line-length'
 	],
-	'parserOptions': {
-		'ecmaVersion': 'latest',
-		'sourceType': 'module'
-	},
+
 	'plugins': [
 		'perfectionist',
 		'@typescript-eslint',
@@ -55,7 +53,8 @@ module.exports = {
 	],
 	'env': {
 		'browser': true,
-		'es2021': true
+		'es2021': true,
+		'node':true
 	},
 	'parser': '@typescript-eslint/parser'
 };
