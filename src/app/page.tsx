@@ -13,7 +13,7 @@ export default function Home() {
 		}
 	}, []);
 	const loadUsers = () => {
-		api.get('/users/me').then(data => console.log(data));
+		api.get('').then(data => console.log(data));
 	};
 	return (
 		<ThemeProvider theme={theme}>
