@@ -5,6 +5,7 @@ import { api } from '@/utils/axiosInstance';
 import { theme } from '@/utils/theme';
 import { useEffect } from 'react';
 
+
 export default function Home() {
 	const router  = useRouter();
 	useEffect(() => {
@@ -18,7 +19,6 @@ export default function Home() {
 	return (
 		<ThemeProvider theme={theme}>
 			<main>
-main
 				<button onClick={loadUsers}>
 					load users
 				</button>
