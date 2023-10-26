@@ -8,7 +8,6 @@ import React from 'react';
 
 export const LoginForm = () => {
 	const theme = useTheme();
-	
 	return (
 	    <Wrapper>
 		    <Logo>
