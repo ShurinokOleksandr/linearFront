@@ -1,17 +1,13 @@
 'use client';
+import { SignUpForm } from '@/app/signup/components/SignUpForm/SignUpForm';
 import { ThemeProvider } from 'styled-components';
-import { useRouter } from 'next/navigation';
 import { darkTheme } from '@/theme/colors';
+import React from 'react';
 
-
-export default function Home() {
-	const router  = useRouter();
-	
-	return (
+export default function Auth() {
+ 	return (
 		<ThemeProvider theme={darkTheme}>
-			<main>
-			
-			</main>
+			<SignUpForm/>
 		</ThemeProvider>
 	);
 }

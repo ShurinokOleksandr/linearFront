@@ -1,9 +1,17 @@
 'use client';
 
-import { StyleSheetManager, ServerStyleSheet } from 'styled-components';
+import { createGlobalStyle, StyleSheetManager, ServerStyleSheet } from 'styled-components';
 import { useServerInsertedHTML } from 'next/navigation';
+import { normalize } from 'styled-normalize';
 import React, { useState } from 'react';
 
+export const GlobalStyle = createGlobalStyle`
+  ${normalize}
+  * {
+    padding: 0;
+    box-sizing: border-box;
+  }
+`;
 export default function StyledComponentsRegistry({ children }: { children: React.ReactNode }) {
 
 	const [styledComponentsStyleSheet] = useState(() => new ServerStyleSheet());
@@ -18,6 +26,7 @@ export default function StyledComponentsRegistry({ children }: { children: React
 
 	return (
 		<StyleSheetManager sheet={styledComponentsStyleSheet.instance}>
+			<GlobalStyle />
 			{children}
 		</StyleSheetManager>
 	);

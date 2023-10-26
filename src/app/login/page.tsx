@@ -1,17 +1,16 @@
 'use client';
+import { LoginForm } from '@/app/login/components/LoginForm/LoginForm';
 import { ThemeProvider } from 'styled-components';
-import { useRouter } from 'next/navigation';
 import { darkTheme } from '@/theme/colors';
+import React from 'react';
 
-
-export default function Home() {
-	const router  = useRouter();
+export default function Auth() {
 	
 	return (
 		<ThemeProvider theme={darkTheme}>
-			<main>
-			
-			</main>
+			<LoginForm />
 		</ThemeProvider>
 	);
 }
+
+ 

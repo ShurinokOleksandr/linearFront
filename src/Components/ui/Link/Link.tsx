@@ -1,18 +1,11 @@
-import Link, { LinkProps } from 'next/link';
+import { CommonProps } from '@/Components/ui/CommonProps/CommonProps';
 import styled from 'styled-components';
-import React from 'react';
+import * as CSS from 'csstype';
 
-export const CustomLink = styled(Link)`
-color: red;
+export const CustomLink = styled(CommonProps).attrs({ as: 'a' })<CSS.Properties>`
+  display: ${({ display }) => display ? display : 'inline'} ;
+
+  &:hover {
+    color: ${({ color, theme }) => color ? color : theme.white};
+   }
 `;
-
-
-export const MyLink = (props:LinkProps) => {
-	return (
-		<CustomLink {...props}>
-            children
-		</CustomLink>
-	);
-};
-
-  

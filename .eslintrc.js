@@ -7,15 +7,19 @@ module.exports = {
 				'order': 'desc'
 			}
 		],
+		'react/jsx-curly-brace-presence': [2,'never'],
 		'object-curly-spacing': ['error', 'always'],
+		'@typescript-eslint/no-explicit-any':'off',
 		'quotes': [
 			'error',
 			'single'
 		],
+		'jsx-quotes': ['error', 'prefer-single'],
 		'semi': [
 			'error',
 			'always'
 		],
+		'no-mixed-spaces-and-tabs':'off',
 		'react/react-in-jsx-scope':'off',
 		'indent': ['error', 'tab'],
 	},
