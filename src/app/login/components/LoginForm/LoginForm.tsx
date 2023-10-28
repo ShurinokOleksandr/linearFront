@@ -1,12 +1,10 @@
-import { Button } from '@/Components/ui/Button/Button';
-import { CustomLink, LogoIcon } from '@/Components/ui';
+import { CustomLink, Typography, LogoIcon, Button, Title, Input, Span, Box } from '@/Components/ui';
 import styled, { useTheme } from 'styled-components';
-import { Input } from '@/Components/ui/Input/Input';
-import { Title } from '@/Components/ui/Title/Title';
-import { Span } from '@/Components/ui/Span/Span';
+import { observer } from 'mobx-react-lite';
 import React from 'react';
 
-export const LoginForm = () => {
+import loginFormStore from '../../model/stote';
+export const LoginForm =  observer(() => {
 	const theme = useTheme();
 	return (
 	    <Wrapper>
@@ -19,21 +17,45 @@ export const LoginForm = () => {
 		    >
 			    Log in to Linear
 		    </Title>
-		    <Input
-			    placeholder='Enter your Name...'
-			    fontSize={theme.fontSizes.small}
-			    display='block'
-			    padding='10px'
-			    height='46px'
-		    />
-		    <Input
-			    placeholder='Enter your Password...'
-			    fontSize={theme.fontSizes.small}
-			    display='block'
-			    padding='10px'
-			    height='46px'
-		    />
+		    <Box >
+			    <Input
+				    onChange={(e:React.ChangeEvent<HTMLInputElement>) => loginFormStore.setUsername(e.target.value)}
+				    placeholder='Enter your Name...'
+				    fontSize={theme.fontSizes.small}
+				    marginBottom='7px'
+				    display='block'
+				    padding='10px'
+				    height='46px'
+			    />
+			    {
+				    loginFormStore.usernameValidationError && <Typography
+						color={theme.critical}
+						fontSize='12px'
+					>
+					    {loginFormStore.usernameValidationError}
+					</Typography>
+			    }
+		    </Box>
+		    <Box>
+			    <Input
+				    onChange={(e:React.ChangeEvent<HTMLInputElement>) => loginFormStore.setPassword(e.target.value)}
+				    placeholder='Enter your Password...'
+				    fontSize={theme.fontSizes.small}
+				    marginBottom='7px'
+				    type='password'
+				    display='block'
+				    padding='10px'
+				    height='46px'
+			    />
+			    <Typography
+				    color={theme.critical}
+				    fontSize='12px'
+			    >
+				    {loginFormStore.passwordValidationError}
+			    </Typography>
+		    </Box>
 		    <Button
+			    onClick={() => loginFormStore.submitLogin()}
 			    fontSize={theme.fontSizes.small}
 			    borderRadius='4px'
 			    textAlign='center'
@@ -43,7 +65,7 @@ export const LoginForm = () => {
 		    >
 			    Login
 		    </Button>
-		    <Title
+		    <Typography
 		        fontSize='12px'
 		    ><Span marginRight='5px'>
 			    Do you have not an account?
@@ -51,10 +73,10 @@ export const LoginForm = () => {
 			    <CustomLink color={theme.purple300} href='/signup'>
 				    Sign Up
 			    </CustomLink>
-			</Title>
+			</Typography>
 	    </Wrapper>
 	);
-};
+});
 const Wrapper  = styled.div`
   color: ${({ theme }) => theme.gray200};
   display: flex;

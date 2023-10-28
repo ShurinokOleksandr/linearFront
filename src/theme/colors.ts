@@ -21,7 +21,7 @@ export const colors = {
 	purple700: '#2A2B51',
 	purple800: '#222342',
 	purple900: '#161722',
-	critical: '#FF5F52',
+	critical: '#eb5757',
 	gray100: '#EEEFFC',
 	gray150: '#E0E1EC',
 	gray200: '#D2D3E0',

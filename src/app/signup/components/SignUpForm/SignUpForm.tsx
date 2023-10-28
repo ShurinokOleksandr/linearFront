@@ -1,12 +1,10 @@
-import { Button } from '@/Components/ui/Button/Button';
-import { CustomLink, LogoIcon } from '@/Components/ui';
+import { CustomLink, Typography, LogoIcon, Button, Title, Input, Span, Box } from '@/Components/ui';
 import styled, { useTheme } from 'styled-components';
-import { Input } from '@/Components/ui/Input/Input';
-import { Title } from '@/Components/ui/Title/Title';
-import { Span } from '@/Components/ui/Span/Span';
-import React from 'react';
+import { signUpStore } from '@/app/signup/modal';
+import React, { ChangeEvent } from 'react';
+import { observer } from 'mobx-react-lite';
 
-export const SignUpForm = () => {
+export const SignUpForm = observer(() => {
 	const theme = useTheme();
 	
 	return (
@@ -20,28 +18,65 @@ export const SignUpForm = () => {
 			>
 				Sign up to Linear
 			</Title>
-			<Input
-				placeholder='Enter your Name...'
-				fontSize={theme.fontSizes.small}
-				display='block'
-				padding='10px'
-				height='46px'
-			/>
-			<Input
-				placeholder='Enter your Password...'
-				fontSize={theme.fontSizes.small}
-				display='block'
-				padding='10px'
-				height='46px'
-			/>
-			<Input
-				placeholder='Repeat your Password...'
-				fontSize={theme.fontSizes.small}
-				display='block'
-				padding='10px'
-				height='46px'
-			/>
+			<Box>
+				<Input
+					onChange={(e:ChangeEvent<HTMLInputElement>) => signUpStore.setUsername(e.target.value)}
+					placeholder='Enter your Username...'
+					fontSize={theme.fontSizes.small}
+					marginBottom='5px'
+					display='block'
+					pattern='[^ ]+'
+					padding='10px'
+					height='46px'
+				/>
+				{
+					signUpStore.usernameValidationError
+						? <Typography color={theme.critical} fontSize='12px'>
+							{signUpStore.usernameValidationError}
+						</Typography>
+						: <></>
+				}
+			</Box>
+			<Box>
+				<Input
+					onChange={(e:ChangeEvent<HTMLInputElement>) =>  signUpStore.setPassword(e.target.value)}
+					placeholder='Enter your Password...'
+					fontSize={theme.fontSizes.small}
+					marginBottom='5px'
+					display='block'
+					type='password'
+					padding='10px'
+					height='46px'
+				/>
+				{
+					signUpStore.passwordValidationError
+						? <Typography color={theme.critical} fontSize='12px'>
+							{signUpStore.passwordValidationError}
+						</Typography>
+						: <></>
+				}
+			</Box>
+			<Box>
+				<Input
+					onChange={(e:ChangeEvent<HTMLInputElement>) => signUpStore.setRepeatPassword(e.target.value)}
+					placeholder='Repeat your Password...'
+					fontSize={theme.fontSizes.small}
+					marginBottom='5px'
+					display='block'
+					type='password'
+					padding='10px'
+					height='46px'
+				/>
+				{
+					signUpStore.repeatPasswordValidationError
+						? <Typography color={theme.critical} fontSize='12px'>
+							{signUpStore.repeatPasswordValidationError}
+						</Typography>
+						: <></>
+				}
+			</Box>
 			<Button
+				onClick={() => signUpStore.submitSignUp()}
 				fontSize={theme.fontSizes.small}
 				borderRadius='4px'
 				textAlign='center'
@@ -51,7 +86,7 @@ export const SignUpForm = () => {
 			>
 				Sign Up
 			</Button>
-			<Title
+			<Typography
 				fontSize='12px'
 			><Span marginRight='5px'>
 				Do you have an account?
@@ -59,10 +94,10 @@ export const SignUpForm = () => {
 				<CustomLink color={theme.purple300} href='/login'>
 					Log in
 				</CustomLink>
-			</Title>
+			</Typography>
 		</Wrapper>
 	);
-};
+});
 const Wrapper  = styled.div`
   color: ${({ theme }) => theme.gray200};
   display: flex;

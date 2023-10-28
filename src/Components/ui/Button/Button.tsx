@@ -33,7 +33,7 @@ export interface DefaultButtonProps extends CSS.PropertiesFallback {
 export const Button = styled(CommonProps).attrs({ as: 'button' })<CSS.Properties>`
   background: ${({ background, theme }) => background ? background : theme.gray800};
   border-radius: ${({  borderRadius }) => borderRadius ? borderRadius : '0'};
-
+  cursor: ${({  cursor }) => cursor ? cursor : 'pointer'};
   &:hover {
     background: ${({ background, theme }) => background ? background : theme.gray950};
     color: ${({ theme, color }) => color ? color :  theme.white};
