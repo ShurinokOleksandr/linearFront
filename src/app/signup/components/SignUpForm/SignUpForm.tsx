@@ -1,13 +1,23 @@
-import { CustomLink, Typography, LogoIcon, Button, Title, Input, Span, Box } from '@/Components/ui';
+'use client';
+import { CustomLink, Typography, LogoIcon, Button, Input, Title, Span, Box } from '@/Components/ui';
 import styled, { useTheme } from 'styled-components';
 import { signUpStore } from '@/app/signup/modal';
+import { useRouter } from 'next/navigation';
 import React, { ChangeEvent } from 'react';
 import { observer } from 'mobx-react-lite';
 
 export const SignUpForm = observer(() => {
 	const theme = useTheme();
-	
-	return (
+	const router = useRouter();
+	const signUpFn = async () =>  {
+		const res = await signUpStore.submitSignUp();
+		if(res && res.ok){
+			router.push('/');
+		}else{
+			return null;
+		}
+	};
+ 	return (
 		<Wrapper>
 			<Logo>
 				<LogoIcon />
@@ -76,8 +86,8 @@ export const SignUpForm = observer(() => {
 				}
 			</Box>
 			<Button
-				onClick={() => signUpStore.submitSignUp()}
 				fontSize={theme.fontSizes.small}
+				onClick={signUpFn}
 				borderRadius='4px'
 				textAlign='center'
 				display='block'
@@ -88,8 +98,9 @@ export const SignUpForm = observer(() => {
 			</Button>
 			<Typography
 				fontSize='12px'
-			><Span marginRight='5px'>
-				Do you have an account?
+			>
+				<Span marginRight='5px'>
+					Do you have an account?
 				</Span>
 				<CustomLink color={theme.purple300} href='/login'>
 					Log in
@@ -98,7 +109,7 @@ export const SignUpForm = observer(() => {
 		</Wrapper>
 	);
 });
-const Wrapper  = styled.div`
+const Wrapper  = styled.main`
   color: ${({ theme }) => theme.gray200};
   display: flex;
   flex-direction: column;

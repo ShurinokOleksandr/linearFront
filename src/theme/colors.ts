@@ -38,7 +38,7 @@ export const colors = {
 	gray750: '#313248',
 	gray800: '#292B41',
 	gray850: '#26293E',
-	gray900: '#2C2D42',
+	gray900: '#191A23',
 	gray950: '#26273B',
 	success: '#40B66B',
 	gray960:'#292A35',

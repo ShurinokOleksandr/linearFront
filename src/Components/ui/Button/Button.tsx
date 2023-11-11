@@ -1,7 +1,8 @@
 import type * as CSS from 'csstype';
 
-import { CommonProps } from '@/Components/ui/CommonProps/CommonProps';
 import styled from 'styled-components';
+
+import { CommonProps } from '../CommonProps/CommonProps';
 
 export interface DefaultButtonProps extends CSS.PropertiesFallback {
 	transitionTimingFunction?: string;
@@ -32,7 +33,8 @@ export interface DefaultButtonProps extends CSS.PropertiesFallback {
 }
 export const Button = styled(CommonProps).attrs({ as: 'button' })<CSS.Properties>`
   background: ${({ background, theme }) => background ? background : theme.gray800};
-  border-radius: ${({  borderRadius }) => borderRadius ? borderRadius : '0'};
+  border-radius: ${({  borderRadius }) => borderRadius ? borderRadius : '0px'};
+  text-align: ${({ textAlign }) => textAlign ? textAlign : 'inline'} ;
   cursor: ${({  cursor }) => cursor ? cursor : 'pointer'};
   &:hover {
     background: ${({ background, theme }) => background ? background : theme.gray950};

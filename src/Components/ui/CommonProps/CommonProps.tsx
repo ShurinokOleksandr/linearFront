@@ -27,5 +27,6 @@ export const CommonProps = styled.div<CSS.Properties>`
   display: ${({ display }) => display ? display : 'block' } ;
   font-weight:${({ fontWeight }) => fontWeight ? fontWeight : '500' } ;
   text-align:${({ textAlign }) => textAlign ?  textAlign   : 'start'};
+  text-justify:${({ textJustify }) => textJustify ?  textJustify   : 'start'};
 
 `;

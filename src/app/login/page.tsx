@@ -1,13 +1,12 @@
-import { LoginAuthWrap } from '@/app/login/components/LoginAuthWrap';
+import { LoginForm } from '@/app/login/components/LoginForm/LoginForm';
 import React from 'react';
 
-export default function Auth() {
+
+
+export default async function  Auth() {
 	
 	return (
-		 
-		<LoginAuthWrap />
-		 
-		
+		<LoginForm />
 	);
 }
 

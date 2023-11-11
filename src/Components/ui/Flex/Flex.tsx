@@ -1,17 +1,17 @@
+import { CommonProps } from '@/Components/ui/CommonProps/CommonProps';
 import styled from 'styled-components';
-import React from 'react';
-interface StyledFlexType {
-	justify?:  'center' | 'start' | 'end';
-	items?: 'center' | 'start' | 'end';
-	children?: React.ReactNode;
-}
+import * as CSS from 'csstype';
 
-const StyledFlex = styled.div<StyledFlexType>`
-	display: flex;
-	align-items: ${props => props.items || 'start'};
-	justify-content: ${props => props.justify || 'start'};
+export const Flex = styled(CommonProps).attrs({ as: 'div' })<CSS.Properties>`
+  display: ${({ display }) =>   display || 'flex' } ;
+  align-items: ${({ alignItems }) => alignItems || 'start'};
+  justify-content: ${({ justifyContent }) => justifyContent || 'start'};
+  gap: ${({ gap }) => gap || '0'};
+  // column-gap: ${({ columnGap }) => columnGap || '0'};
+  // row-gap: ${({ rowGap }) => rowGap || '0'};
+  background-color: ${({ backgroundColor }) => backgroundColor ? backgroundColor : 'inherit'};
 `;
-export const  Flex = (props:StyledFlexType) => {
-	return <StyledFlex {...props}>{props.children}</StyledFlex>;
-};
+// export const  Flex = (props:StyledFlexType) => {
+// 	return <StyledFlex {...props}>{props.children}</StyledFlex>;
+// };
 

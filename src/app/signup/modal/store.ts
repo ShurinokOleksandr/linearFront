@@ -1,3 +1,4 @@
+import { userStoreType, userStore } from '@/provider/userStore';
 import { makeAutoObservable } from 'mobx';
 
 class SignUpStore {
@@ -7,14 +8,36 @@ class SignUpStore {
 	repeatPassword = '';
 	username = '';
 	password = '';
-	constructor() {
+	userStore  ;
+	constructor(userStore: userStoreType) {
 		makeAutoObservable(this);
+		this.userStore = userStore;
 	}
-	submitSignUp(){
+	async submitSignUp(){
 		if(this.password.length >= 6 && this.username && this.password === this.repeatPassword){
 			this.setUsernameValidationError('');
 			this.setPasswordValidationError('');
-			console.log(1);
+			const result = await fetch('http://localhost:4001/auth/create',{
+				body:JSON.stringify({
+					repeatPassword:this.repeatPassword,
+					username:this.username,
+					password:this.password
+				}),
+				headers:{
+					'Content-type': 'application/json',
+				},
+				credentials: 'include',
+				method:'POST'
+			});
+			const data = await result.json();
+			if(result.ok){
+				this.userStore.setUser(data);
+				return result;
+			}
+			if(result.status === 405){
+				return this.setUsernameValidationError(data.message);
+			}
+			
 		}
 		if(!this.username.length) {
 			this.setUsernameValidationError('Please enter an username for login.');
@@ -64,4 +87,4 @@ class SignUpStore {
 	}
 	
 }
-export const signUpStore = new SignUpStore();
+export const signUpStore = new SignUpStore(userStore);

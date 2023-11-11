@@ -1,5 +1,8 @@
-import StyledComponentsRegistry from '@/provider/Provider';
+import StyledComponentsRegistry from '@/provider/StyledProvider';
+import { ClientLayout } from '@/provider/ClientLayout';
 import { Inter } from 'next/font/google';
+import React from 'react';
+
 
 export const metadata = {
 	description: 'I have followed setup instructions carefully',
@@ -7,14 +10,17 @@ export const metadata = {
 };
 const inter = Inter({ subsets: ['latin'] });
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-	return (
+
+export default function RootLayout({ children }: { children: React.ReactNode, route: string }) {
+ 	return (
 		<html lang='en'>
 			<head>
- 				<link href='https://static.linear.app/client/assets/favicon-321af485.svg' type='image/svg+xml' rel='icon'/>
+				<link href='https://static.linear.app/client/assets/favicon-321af485.svg' type='image/svg+xml' rel='icon'/>
 			</head>
-			<body className={inter.className}>
-				<StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+			<body style={{ background:'linear-gradient(rgb(44, 45, 60) 0%, rgb(25, 26, 35) 50%)',overflow:'hidden',height:'100vh' }} className={inter.className}>
+				<StyledComponentsRegistry>
+					<ClientLayout>{children}</ClientLayout>
+				</StyledComponentsRegistry>
 			</body>
 		</html>
 	);

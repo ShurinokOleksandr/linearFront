@@ -1,9 +1,8 @@
 'use client';
-
-
 import { useRouter } from 'next/navigation';
 
-export default function Home() {
+
+export default function MainPage() {
 	const router = useRouter();
 	const logOut = async () => {
 		const res = await fetch('/main/logout',{

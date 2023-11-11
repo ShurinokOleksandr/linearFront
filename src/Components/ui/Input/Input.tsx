@@ -1,6 +1,7 @@
-import { CommonProps } from '@/Components/ui/CommonProps/CommonProps';
 import styled from 'styled-components';
 import * as CSS from 'csstype';
+
+import { CommonProps } from '../CommonProps/CommonProps';
 
 
 export const Input = styled(CommonProps).attrs({ as: 'input' })<CSS.Properties>`

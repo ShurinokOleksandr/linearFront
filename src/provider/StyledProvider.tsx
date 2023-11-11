@@ -19,11 +19,11 @@ export default function StyledComponentsRegistry({ children }: { children: React
 	useServerInsertedHTML(() => {
 		const styles = styledComponentsStyleSheet.getStyleElement();
 		styledComponentsStyleSheet.instance.clearTag();
-		return styles;
+		return <>{styles}</>;
 	});
 
 	if (typeof window !== 'undefined') return <>{children}</>;
-
+	
 	return (
 		<StyleSheetManager sheet={styledComponentsStyleSheet.instance}>
 			<GlobalStyle />
