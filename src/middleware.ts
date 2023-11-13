@@ -4,8 +4,7 @@ import { NextResponse } from 'next/server';
 
 export async function middleware(request: NextRequest) {
 	const cookie = request.cookies.get('access_token');
-	console.log( request.nextUrl.pathname,'123');
-	// console.log( request.nextUrl.pathname);
+ 	// console.log( request.nextUrl.pathname);
 	
 	if (!cookie && request.nextUrl.pathname === '/') {
 		return NextResponse.redirect(new URL('/login', request.url));

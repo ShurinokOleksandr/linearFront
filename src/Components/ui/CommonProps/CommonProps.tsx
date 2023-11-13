@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import * as CSS from 'csstype';
 
-export const CommonProps = styled.div<CSS.Properties>`
+export const CommonProps = styled.div.withConfig({
+	shouldForwardProp: (prop) => !['marginBottom','marginRight','textAlign'].includes(prop),
+})<CSS.Properties>`
   user-select: ${({ userSelect }) => userSelect ?  userSelect   : 'none'};
   height:${({ height }) => height &&  height};
   width:${({ width   }) => width ?  width   : '100%'};

@@ -5,6 +5,7 @@ import { makeAutoObservable } from 'mobx';
 class LoginStore {
 	usernameValidationError = '';
 	passwordValidationError= '';
+	loading = false;
 	username = '';
 	password = '';
 	userStore  ;
@@ -14,6 +15,7 @@ class LoginStore {
 	}
 	async  submitLogin(){
 		if(this.password.length >= 6 && this.username){
+			this.loading = true;
 			this.setUsernameValidationError('');
 			this.setPasswordValidationError('');
 			// try {
@@ -50,21 +52,26 @@ class LoginStore {
 				const data = await result.json();
 				if(result.ok){
 					this.userStore.setUser(data);
-					return result;
+					this.loading = false;
+					return data;
 				}
 				if(result.status === 404){
+					this.loading = false;
 					return this.setUsernameValidationError(data.message);
 				}
 				if(result.status === 403){
+					this.loading = false;
 					return this.setPasswordValidationError(data.message);
 				}
 				
 			}catch (e) {
 				if (e instanceof Error){
+					this.loading = false;
 					console.log(e);
 				}
 				
 			}
+				
 		}
 		if(!this.username.length) {
 			this.setUsernameValidationError('Please enter an username for login.');

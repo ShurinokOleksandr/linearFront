@@ -31,8 +31,11 @@ export interface DefaultButtonProps extends CSS.PropertiesFallback {
 	bg?:string
 	
 }
-export const Button = styled(CommonProps).attrs({ as: 'button' })<CSS.Properties>`
+export const Button = styled(CommonProps).withConfig({
+	shouldForwardProp: (prop) => !['borderRadius'].includes(prop),
+}).attrs({ as: 'button' })<CSS.Properties>`
   background: ${({ background, theme }) => background ? background : theme.gray800};
+  
   border-radius: ${({  borderRadius }) => borderRadius ? borderRadius : '0px'};
   text-align: ${({ textAlign }) => textAlign ? textAlign : 'inline'} ;
   cursor: ${({  cursor }) => cursor ? cursor : 'pointer'};

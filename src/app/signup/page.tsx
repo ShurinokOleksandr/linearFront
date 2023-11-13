@@ -1,9 +1,12 @@
 
 import { SignUpForm } from '@/app/signup/components/SignUpForm/SignUpForm';
-import React from 'react';
+import Loading from '@/app/signup/loading';
+import React, { Suspense } from 'react';
 
 export default function Auth() {
  	return (
-		<SignUpForm/>
+		 <Suspense fallback={<Loading/>}>
+			 <SignUpForm/>
+		 </Suspense>
 	);
 }

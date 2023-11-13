@@ -6,6 +6,7 @@ class SignUpStore {
 	usernameValidationError = '';
 	passwordValidationError= '';
 	repeatPassword = '';
+	loading = false;
 	username = '';
 	password = '';
 	userStore  ;
@@ -15,6 +16,7 @@ class SignUpStore {
 	}
 	async submitSignUp(){
 		if(this.password.length >= 6 && this.username && this.password === this.repeatPassword){
+			this.loading = true;
 			this.setUsernameValidationError('');
 			this.setPasswordValidationError('');
 			const result = await fetch('http://localhost:4001/auth/create',{
@@ -31,10 +33,12 @@ class SignUpStore {
 			});
 			const data = await result.json();
 			if(result.ok){
+				this.loading = false;
 				this.userStore.setUser(data);
-				return result;
+				return data;
 			}
 			if(result.status === 405){
+				this.loading = false;
 				return this.setUsernameValidationError(data.message);
 			}
 			

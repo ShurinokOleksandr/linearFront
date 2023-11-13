@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing sign up store Testing create user 1`] = `
+{
+  "id": 25,
+  "name": "testUser",
+  "success": 201,
+}
+`;

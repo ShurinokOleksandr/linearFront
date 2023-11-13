@@ -9,7 +9,7 @@ export const Input = styled(CommonProps).attrs({ as: 'input' })<CSS.Properties>`
   display: ${({ display }) => display ? display : 'inline'};
   background: ${({ background, theme }) => background ? background : theme.purple900};
    border:${({ border, theme }) => border ? border : theme.gray700} 1px solid ;
-  
+  pointer-events: ${({ pointerEvents }) => pointerEvents ? pointerEvents : 'auto'};;
   &::placeholder{
     color: ${({ theme }) => theme.gray500};
   }

@@ -8,11 +8,14 @@ import React from 'react';
 import loginFormStore from '../../model/store';
 
 export const LoginForm =  observer(() => {
+	 
  	const theme = useTheme();
+	 
 	const router = useRouter();
+	 
 	const loginFn = async () =>  {
 		const res = await loginFormStore.submitLogin();
-		if(res && res.ok){
+ 		if(res){
 			router.push('/');
 		}else{
 			return null;
@@ -24,6 +27,7 @@ export const LoginForm =  observer(() => {
 				<LogoIcon />
 			</Logo>
 			<Title
+				data-testid='titleForm'
 				textAlign='center'
 				fontSize='20px'
 			>
@@ -32,6 +36,7 @@ export const LoginForm =  observer(() => {
 			<Box >
 				<Input
 					onChange={(e:React.ChangeEvent<HTMLInputElement>) => loginFormStore.setUsername(e.target.value)}
+					pointerEvents={loginFormStore.loading ? 'none' : 'auto'}
 					placeholder='Enter your Name...'
 					fontSize={theme.fontSizes.small}
 					marginBottom='7px'
@@ -51,7 +56,8 @@ export const LoginForm =  observer(() => {
 			<Box>
 				<Input
 					onChange={(e:React.ChangeEvent<HTMLInputElement>) => loginFormStore.setPassword(e.target.value)}
-					placeholder='Enter your Password...'
+					pointerEvents={loginFormStore.loading ? 'none' : 'auto'}
+ 					placeholder='Enter your Password...'
 					fontSize={theme.fontSizes.small}
 					marginBottom='7px'
 					type='password'
@@ -59,14 +65,18 @@ export const LoginForm =  observer(() => {
 					padding='10px'
 					height='46px'
 				/>
-				<Typography
-					color={theme.critical}
-					fontSize='12px'
-				>
-					{loginFormStore.passwordValidationError}
-				</Typography>
+				{
+					loginFormStore.usernameValidationError && <Typography
+						color={theme.critical}
+						fontSize='12px'
+					>
+						{loginFormStore.passwordValidationError}
+					</Typography>
+				}
 			</Box>
 			<Button
+ 				cursor={loginFormStore.loading ? 'auto' : 'pointer' }
+				disabled={loginFormStore.loading}
 				fontSize={theme.fontSizes.small}
 				borderRadius='4px'
 				textAlign='center'

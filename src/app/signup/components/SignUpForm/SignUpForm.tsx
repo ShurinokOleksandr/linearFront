@@ -87,6 +87,7 @@ export const SignUpForm = observer(() => {
 			</Box>
 			<Button
 				fontSize={theme.fontSizes.small}
+				disabled={signUpStore.loading}
 				onClick={signUpFn}
 				borderRadius='4px'
 				textAlign='center'
