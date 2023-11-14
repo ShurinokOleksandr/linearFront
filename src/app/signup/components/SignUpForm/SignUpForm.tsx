@@ -23,6 +23,7 @@ export const SignUpForm = observer(() => {
 				<LogoIcon />
 			</Logo>
 			<Title
+				data-testid='titleForm'
 				textAlign='center'
 				fontSize='20px'
 			>
@@ -41,7 +42,7 @@ export const SignUpForm = observer(() => {
 				/>
 				{
 					signUpStore.usernameValidationError
-						? <Typography color={theme.critical} fontSize='12px'>
+						? <Typography data-testid='usernameError' color={theme.critical} fontSize='12px'>
 							{signUpStore.usernameValidationError}
 						</Typography>
 						: <></>
@@ -60,7 +61,7 @@ export const SignUpForm = observer(() => {
 				/>
 				{
 					signUpStore.passwordValidationError
-						? <Typography color={theme.critical} fontSize='12px'>
+						? <Typography data-testid='passwordError' color={theme.critical} fontSize='12px'>
 							{signUpStore.passwordValidationError}
 						</Typography>
 						: <></>
@@ -79,7 +80,7 @@ export const SignUpForm = observer(() => {
 				/>
 				{
 					signUpStore.repeatPasswordValidationError
-						? <Typography color={theme.critical} fontSize='12px'>
+						? <Typography data-testid='passwordRepeatError' color={theme.critical} fontSize='12px'>
 							{signUpStore.repeatPasswordValidationError}
 						</Typography>
 						: <></>

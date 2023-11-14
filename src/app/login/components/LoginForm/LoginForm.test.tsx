@@ -1,5 +1,5 @@
+import { fireEvent, cleanup, render, screen } from '@testing-library/react';
 import { LoginForm } from '@/app/login/components/LoginForm/LoginForm';
-import { cleanup, render,screen } from '@testing-library/react';
 import { ThemeProvider } from 'styled-components';
 import { darkTheme } from '@/theme/colors';
 import { afterEach } from '@jest/globals';
@@ -24,7 +24,33 @@ describe('Testing login form component', () => {
  		expect(inputPassword).toBeInTheDocument();
 		expect(inputUsername).toBeInTheDocument();
 		expect(btn).toBeInTheDocument();
+		expect(screen.getByTestId('titleForm').textContent).toBe('Log in to Linear');
+	});
+	it('should error on click btn with empty inputs', () => {
+		render(<ThemeProvider theme={darkTheme} ><LoginForm /></ThemeProvider> );
+		const btn = screen.getByRole('button');
+		fireEvent.click(btn);
+		const errorTextUsername = screen.getByTestId('usernameError');
+		const errorTextPassword = screen.getByTestId('passwordError');
+		expect(errorTextPassword).toBeInTheDocument();
+		expect(errorTextUsername).toBeInTheDocument();
 		screen.debug();
-		// expect(getByTestId('titleForm').textContent).toBe('Log in to Linear');
+	});
+	it('should error disappear when start typing inputs', () => {
+		render(<ThemeProvider theme={darkTheme}><LoginForm /></ThemeProvider>);
+		const btn = screen.getByRole('button');
+		fireEvent.click(btn);
+		const errorTextUsername = screen.queryByTestId('usernameError');
+		const errorTextPassword = screen.queryByTestId('passwordError');
+		const inputUsername = screen.getByPlaceholderText('Enter your Name...');
+		expect(inputUsername).toHaveTextContent('');
+		expect(errorTextPassword).toBeInTheDocument();
+		expect(errorTextUsername).toBeInTheDocument();
+		fireEvent.input(inputUsername, {
+			target: { value: 'sa' }
+		});
+		fireEvent.click(btn);
+		expect(screen.queryByTestId('passwordError')).toBeNull();
+		expect(screen.queryByTestId('usernameError')).toBeNull();
 	});
 });

@@ -46,6 +46,7 @@ export const LoginForm =  observer(() => {
 				/>
 				{
 					loginFormStore.usernameValidationError && <Typography
+						data-testid='usernameError'
 						color={theme.critical}
 						fontSize='12px'
 					>
@@ -67,6 +68,7 @@ export const LoginForm =  observer(() => {
 				/>
 				{
 					loginFormStore.usernameValidationError && <Typography
+						data-testid='passwordError'
 						color={theme.critical}
 						fontSize='12px'
 					>
