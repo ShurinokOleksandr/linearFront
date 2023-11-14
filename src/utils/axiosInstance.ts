@@ -1,14 +1,13 @@
-import axios from 'axios';
-import ky from 'ky';
+
 
 export const BASE_URL = 'http://localhost:4001';
-export const api = axios.create({
-	headers:{
-		'Content-Type':'application/json'
-	},
-	withCredentials:true,
-	baseURL:BASE_URL
-});
+// export const api = axios.create({
+// 	headers:{
+// 		'Content-Type':'application/json'
+// 	},
+// 	withCredentials:true,
+// 	baseURL:BASE_URL
+// });
 
 
 
@@ -16,14 +15,14 @@ export const api = axios.create({
 
 
 
-export const Api = ky.create({
-	headers:{
-		'Content-type':'application/json'
-	},
-	credentials:'include',
-	prefixUrl:BASE_URL
-}
-);
+// export const Api = ky.create({
+// 	headers:{
+// 		'Content-type':'application/json'
+// 	},
+// 	credentials:'include',
+// 	prefixUrl:BASE_URL
+// }
+// );
 // const access_token = cookies().get('access_token');
 // const refresh_token = cookies().get('refresh_token');
 
