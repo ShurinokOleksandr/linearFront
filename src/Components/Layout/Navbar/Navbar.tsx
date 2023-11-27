@@ -1,6 +1,6 @@
 'use client';
 import { ErrorBoundary } from 'react-error-boundary';
-import { Flex } from '@/Components/ui/Flex/Flex';
+import { Flex } from '@/shared/ui/Flex/Flex';
 import React from 'react';
 
 export const Navbar = () => {

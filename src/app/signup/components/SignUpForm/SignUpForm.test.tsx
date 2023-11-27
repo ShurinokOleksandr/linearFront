@@ -1,7 +1,7 @@
 import { fireEvent, cleanup, render, screen } from '@testing-library/react';
 import { SignUpForm } from '@/app/signup/components/SignUpForm/SignUpForm';
 import { ThemeProvider } from 'styled-components';
-import { darkTheme } from '@/theme/colors';
+import { darkTheme } from '@/shared/theme/colors';
 import { afterEach } from '@jest/globals';
 import '@testing-library/jest-dom';
 

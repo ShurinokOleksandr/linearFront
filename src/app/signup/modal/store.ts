@@ -1,5 +1,5 @@
 import { userStoreType, userStore } from '@/provider/userStore';
-import { makeAutoObservable } from 'mobx';
+import { makeAutoObservable, runInAction } from 'mobx';
 
 class SignUpStore {
 	repeatPasswordValidationError = '';
@@ -16,32 +16,42 @@ class SignUpStore {
 	}
 	async submitSignUp(){
 		if(this.password.length >= 6 && this.username && this.password === this.repeatPassword){
-			this.loading = true;
+			runInAction(() => {
+				this.loading = true;
+			});
 			this.setUsernameValidationError('');
 			this.setPasswordValidationError('');
-			const result = await fetch('http://localhost:4001/auth/create',{
-				body:JSON.stringify({
-					repeatPassword:this.repeatPassword,
-					username:this.username,
-					password:this.password
-				}),
-				headers:{
-					'Content-type': 'application/json',
-				},
-				credentials: 'include',
-				method:'POST'
-			});
-			const data = await result.json();
-			if(result.ok){
-				this.loading = false;
-				this.userStore.setUser(data);
-				return data;
+			try {
+				const result = await fetch('http://localhost:4001/auth/create',{
+					body:JSON.stringify({
+						repeatPassword:this.repeatPassword,
+						username:this.username,
+						password:this.password
+					}),
+					headers:{
+						'Content-type': 'application/json',
+					},
+					credentials: 'include',
+					method:'POST'
+				});
+				const data = await result.json();
+				if(result.ok){
+					this.userStore.setUser(data);
+					return data;
+				}
+				if(result.status === 405){
+					return this.setUsernameValidationError(data.message);
+				}
+			}catch (e) {
+				if (e instanceof Error){
+					console.log(e);
+					return this.setUsernameValidationError('Something got wrong');
+				}
+			}finally {
+				runInAction(() => {
+					this.loading = false;
+				});
 			}
-			if(result.status === 405){
-				this.loading = false;
-				return this.setUsernameValidationError(data.message);
-			}
-			
 		}
 		if(!this.username.length) {
 			this.setUsernameValidationError('Please enter an username for login.');
@@ -61,9 +71,9 @@ class SignUpStore {
 		if(this.password.length === this.repeatPassword.length && this.password === this.repeatPassword){
 			this.setRepeatPasswordValidationError('');
 		}
-		if(this.password !== this.repeatPassword) {
-			this.setRepeatPasswordValidationError('Passwords are not equals');
-		}
+		// if(this.password !== this.repeatPassword) {
+		// 	this.setRepeatPasswordValidationError('Passwords are not equals');
+		// }
 	}
 	setRepeatPassword(repeat:string){
 		this.repeatPassword = repeat.trim();

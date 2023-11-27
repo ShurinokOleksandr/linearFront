@@ -2,7 +2,7 @@
 
 import type { StoryObj, Meta } from '@storybook/react';
 
-import { CustomLink, Span } from '@/Components/ui';
+import { CustomLink, Span } from '@/shared/ui';
 import { useTheme } from 'styled-components';
 import React from 'react';
 

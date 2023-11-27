@@ -3,7 +3,7 @@ import {createGlobalStyle, ThemeProvider} from "styled-components";
 import { withThemeFromJSXProvider } from "@storybook/addon-themes";
 import {normalize} from "styled-normalize";
 //@ts-ignore
-import {darkTheme, lightTheme} from "@/theme/colors";
+import {darkTheme, lightTheme} from "@/shared/theme/colors";
 
 const preview: Preview = {
   parameters: {

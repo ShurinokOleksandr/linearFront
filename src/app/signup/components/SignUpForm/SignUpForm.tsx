@@ -1,5 +1,5 @@
 'use client';
-import { CustomLink, Typography, LogoIcon, Button, Input, Title, Span, Box } from '@/Components/ui';
+import { CustomLink, Typography, LogoIcon, Button, Input, Title, Span, Box } from '@/shared/ui';
 import styled, { useTheme } from 'styled-components';
 import { signUpStore } from '@/app/signup/modal';
 import { useRouter } from 'next/navigation';
@@ -11,7 +11,7 @@ export const SignUpForm = observer(() => {
 	const router = useRouter();
 	const signUpFn = async () =>  {
 		const res = await signUpStore.submitSignUp();
-		if(res && res.ok){
+		if(res){
 			router.push('/');
 		}else{
 			return null;
@@ -88,6 +88,7 @@ export const SignUpForm = observer(() => {
 			</Box>
 			<Button
 				fontSize={theme.fontSizes.small}
+				isLoading={signUpStore.loading}
 				disabled={signUpStore.loading}
 				onClick={signUpFn}
 				borderRadius='4px'

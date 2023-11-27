@@ -3,7 +3,7 @@
 import type { StoryObj, Meta } from '@storybook/react';
 
 import { useTheme } from 'styled-components';
-import { Typography } from '@/Components/ui'; import React from 'react';
+import { Typography } from '@/shared/ui'; import React from 'react';
 
 import { Input } from './Input';
 

@@ -1,6 +1,6 @@
 import type * as CSS from 'csstype';
 
-import { CommonProps } from '@/Components/ui/CommonProps/CommonProps';
+import { CommonProps } from '@/shared/ui/CommonProps/CommonProps';
 import styled from 'styled-components';
 
 export const Span = styled(CommonProps).attrs({ as: 'span' })<CSS.Properties>`

@@ -1,5 +1,5 @@
 'use client';
-import { Navbar } from '@/Components/Layout/Navbar';
+import { Navbar } from '@/shared/Layout/Navbar';
 import React from 'react';
 
 

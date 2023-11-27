@@ -1,6 +1,6 @@
 import { userStore } from '@/provider/userStore/userStore';
+import { makeAutoObservable, runInAction } from 'mobx';
 import { userStoreType } from '@/provider/userStore';
-import { makeAutoObservable } from 'mobx';
 
 class LoginStore {
 	usernameValidationError = '';
@@ -15,28 +15,11 @@ class LoginStore {
 	}
 	async  submitLogin(){
 		if(this.password.length >= 6 && this.username){
-			this.loading = true;
+			runInAction(() => {
+				this.loading = true;
+			});
 			this.setUsernameValidationError('');
 			this.setPasswordValidationError('');
-			// try {
-			// 	const result = await api.post('/auth/login',{
-			// 		username:this.username,
-			// 		password:this.password
-			// 	});
-			// 	this.userStore.setUser(result.data);
-			// 	console.log(result.data);
-			// }catch (e) {
- 			// 	if (axios.isAxiosError(e)){
-			// 		 if(e?.response?.status === 404){
-			// 			 return this.setUsernameValidationError(e?.response?.data.message);
- 			// 		 }
-			// 	    if(e?.response?.status === 403){
-			// 		    return this.setPasswordValidationError(e?.response?.data.message);
-			// 	    }
-			//
-			// 	}
-			//
-			// }
 			try {
 				const result =  await fetch('http://localhost:4001/auth/login',{
 					body:JSON.stringify({
@@ -52,24 +35,25 @@ class LoginStore {
 				const data = await result.json();
 				if(result.ok){
 					this.userStore.setUser(data);
-					this.loading = false;
 					return data;
 				}
 				if(result.status === 404){
-					this.loading = false;
 					return this.setUsernameValidationError(data.message);
 				}
 				if(result.status === 403){
-					this.loading = false;
 					return this.setPasswordValidationError(data.message);
 				}
 				
 			}catch (e) {
 				if (e instanceof Error){
-					this.loading = false;
 					console.log(e);
+					return this.setUsernameValidationError('Something got wrong');
 				}
-				
+			}
+			finally {
+				runInAction(() => {
+					this.loading = false;
+				});
 			}
 				
 		}

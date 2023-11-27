@@ -1,5 +1,5 @@
 import { describe, expect, test } from '@jest/globals';
-import { mockFetch } from '@/utils/mock-fetch';
+import { mockFetch } from '@/shared/utils/mock-fetch';
 import 'isomorphic-fetch';
 
 import { signUpStore } from './store';

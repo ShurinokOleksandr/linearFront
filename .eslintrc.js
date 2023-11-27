@@ -10,6 +10,7 @@ module.exports = {
 		'react/jsx-curly-brace-presence': [2, 'never'],
 		'object-curly-spacing': ['error', 'always'],
 		'@typescript-eslint/no-explicit-any': 'off',
+		'@typescript-eslint/ban-ts-comment':'off',
 		'jsx-quotes': ['error', 'prefer-single'],
 		'no-mixed-spaces-and-tabs': 'off',
 		'react/react-in-jsx-scope': 'off',

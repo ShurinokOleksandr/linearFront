@@ -110,6 +110,7 @@ const commonTheme = {
 	gray950: colors.gray950,
 	gray960: colors.gray960,
 	gray970: colors.gray970,
+	borderColor:'#3e425b',
 	gray50: colors.gray50,
 	white: colors.white,
 	black: colors.black,

@@ -1,14 +1,15 @@
 'use client';
-import { CustomLink, Typography, LogoIcon, Button, Input, Title, Span, Box } from '@/Components/ui';
+import { CustomLink, Typography, LogoIcon, Button, Input, Title, Span, Box } from '@/shared/ui';
+import { usePathname, useRouter } from 'next/navigation';
 import styled, { useTheme } from 'styled-components';
-import { useRouter } from 'next/navigation';
 import { observer } from 'mobx-react-lite';
 import React from 'react';
 
 import loginFormStore from '../../model/store';
 
 export const LoginForm =  observer(() => {
-	 
+	 const url = usePathname();
+	
  	const theme = useTheme();
 	 
 	const router = useRouter();
@@ -67,7 +68,7 @@ export const LoginForm =  observer(() => {
 					height='46px'
 				/>
 				{
-					loginFormStore.usernameValidationError && <Typography
+					loginFormStore.passwordValidationError && <Typography
 						data-testid='passwordError'
 						color={theme.critical}
 						fontSize='12px'
@@ -77,8 +78,9 @@ export const LoginForm =  observer(() => {
 				}
 			</Box>
 			<Button
- 				cursor={loginFormStore.loading ? 'auto' : 'pointer' }
-				disabled={loginFormStore.loading}
+				cursor={loginFormStore.loading && url === '/login' ? 'auto' : 'pointer' }
+ 				isLoading={loginFormStore.loading && url === '/login'}
+				disabled={loginFormStore.loading && url === '/login'}
 				fontSize={theme.fontSizes.small}
 				borderRadius='4px'
 				textAlign='center'

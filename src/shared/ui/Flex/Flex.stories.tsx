@@ -3,7 +3,7 @@
 import type { StoryObj, Meta } from '@storybook/react';
 
 import { useTheme } from 'styled-components';
-import { Title,Box } from '@/Components/ui';
+import { Title,Box } from '@/shared/ui';
 import React from 'react';
 
 import { Flex } from './Flex';
