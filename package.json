@@ -23,6 +23,10 @@
       "npm run lint:fix",
       "git add"
     ],
+    "*.tsx": [
+      "npm run lint:fix",
+      "git add"
+    ],
     "*.ts": [
       "npm run lint:fix",
       "git add"
