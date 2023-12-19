@@ -1,7 +1,6 @@
 import StyledComponentsRegistry from '@/provider/StyledProvider';
 import { ClientLayout } from '@/provider/ClientLayout';
 import { Inter } from 'next/font/google';
-import { cookies } from 'next/headers';
 import React from 'react';
 
 
@@ -13,8 +12,6 @@ const inter = Inter({ subsets: ['latin'] });
 
 
 export default function RootLayout({ children }: { children: React.ReactNode, route: string }) {
-	const token = cookies().get('access_token')?.value;
-	
 	return (
 		<html lang='en'>
 			<head>
@@ -22,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode, ro
 			</head>
 			<body style={{ background:'linear-gradient(rgb(44, 45, 60) 0%, rgb(25, 26, 35) 50%)',overflow:'hidden',height:'100vh' }} className={inter.className}>
 				<StyledComponentsRegistry>
-					<ClientLayout token={token} >{children}</ClientLayout>
+					<ClientLayout>{children}</ClientLayout>
 				</StyledComponentsRegistry>
 			</body>
 		</html>
