@@ -7,3 +7,4 @@ export * from './Title/Title';
 export * from './Flex/Flex';
 export * from './Input/Input';
 export * from './Span/Span';
+export * from './Center/Center';

@@ -1,16 +1,17 @@
-
-
-export const BASE_URL = 'http://localhost:4001';
-// export const api = axios.create({
-// 	headers:{
-// 		'Content-Type':'application/json'
-// 	},
-// 	withCredentials:true,
-// 	baseURL:BASE_URL
-// });
-
-
-
+import wretch from 'wretch';
+import axios from 'axios';
+export const BASE_URL = 'http://localhost:4001/';
+export const api = axios.create({
+	headers:{
+		'Content-Type':'application/json',
+	},
+	withCredentials:true,
+	baseURL:BASE_URL
+});
+export const externalApi = wretch(BASE_URL)
+	.headers({ 'Content-Type':'application/json' })
+	.options({ credentials: 'include' });
+ 
 
 
 

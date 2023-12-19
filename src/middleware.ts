@@ -2,14 +2,18 @@ import type { NextRequest } from 'next/server';
 
 import { NextResponse } from 'next/server';
 
-export async function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest,response:NextResponse) {
 	const cookie = request.cookies.get('access_token');
  	// console.log( request.nextUrl.pathname);
+	const dynamicPathRegex = /^\/[^\/]+\/team\/[^\/]+\/[^\/]+$/; // RegExp для динамического пути '/[workspacename]/team/[customId]/[statusIssue]'
 	
 	if (!cookie && request.nextUrl.pathname === '/') {
 		return NextResponse.redirect(new URL('/login', request.url));
 	}
 	if (!cookie && request.nextUrl.pathname === '/main') {
+		return NextResponse.redirect(new URL('/login', request.url));
+	}
+	if (!cookie && dynamicPathRegex.test(request.nextUrl.pathname)) {
 		return NextResponse.redirect(new URL('/login', request.url));
 	}
 	if (cookie && request.nextUrl.pathname === '/login') {
@@ -29,5 +33,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-	matcher: ['/main/:path*','/login/:path*','/:path*',],
+	matcher: ['/main/:path*','/login/:path*','/:path*', '/(.*)/team/(.*)'],
 };

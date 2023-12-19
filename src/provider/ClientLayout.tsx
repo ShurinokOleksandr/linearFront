@@ -1,15 +1,19 @@
 'use client';
 
+import ReactQueryProvider from '@/provider/reactQueryProvider/ReactQueryProvider';
 import { ThemeProvider } from 'styled-components';
 import { darkTheme } from '@/shared/theme/colors';
 import React from 'react';
 
-export const  ClientLayout = ({ children }: { children: React.ReactNode }) => {
+export const  ClientLayout = ({ children,token }: { children: React.ReactNode ,token?:any}) => {
+	
+	
 	return (
-		
-		<ThemeProvider theme={darkTheme}>
-			{ children }
-		</ThemeProvider>
+		<ReactQueryProvider token={token}>
+			<ThemeProvider theme={darkTheme}>
+				{ children }
+			</ThemeProvider>
+		</ReactQueryProvider>
 	);
 };
 

@@ -4,6 +4,7 @@ import * as CSS from 'csstype';
 
 export const Flex = styled(CommonProps).attrs({ as: 'div' })<CSS.Properties>`
   display: ${({ display }) =>   display || 'flex' } ;
+  flex-direction:  ${({ flexDirection }) =>   flexDirection && flexDirection };
   align-items: ${({ alignItems }) => alignItems || 'start'};
   justify-content: ${({ justifyContent }) => justifyContent || 'start'};
   gap: ${({ gap }) => gap || '0'};

@@ -1,2 +1,2 @@
-export { signUpStore } from './store';
+export { SignUpStore } from './store';
 

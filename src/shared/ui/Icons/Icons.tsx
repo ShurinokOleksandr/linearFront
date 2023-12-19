@@ -69,3 +69,31 @@ export const LogoIcon = (props:any) => (
 export const LoadingIcon = (props:any) => (
  	<svg {...props} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 150' ><path d='M275 75c0 31-27 50-50 50-58 0-92-100-150-100-28 0-50 22-50 50s23 50 50 50c58 0 92-100 150-100 24 0 50 19 50 50Z' strokeDasharray='300 385' strokeLinecap='round' strokeDashoffset='0' stroke='#FF156D' strokeWidth='10' fill='none'><animate attributeName='stroke-dashoffset' repeatCount='indefinite' keySplines='0 0 1 1' calcMode='spline' values='685;-685' dur='1.5'></animate></path></svg>
 );
+export const DropDownArrowIcon = (props:any) => (
+	<svg {...props} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6' width='10' height='6'>
+		<g clipPath='url(#clip0_14_38)'>
+			<path
+				d='M2.12771 0.841102C1.98764 0.707705 1.80097 0.634355 1.60756 0.636713C1.41415 0.639071 1.22933 0.716952 1.09255 0.853724C0.955782 0.990497 0.877902 1.17532 0.875543 1.36873C0.873185 1.56214 0.946536 1.74881 1.07993 1.88888L4.25993 5.06888C4.35714 5.16621 4.47258 5.24342 4.59965 5.2961C4.72672 5.34878 4.86293 5.37589 5.00049 5.37589C5.13805 5.37589 5.27425 5.34878 5.40132 5.2961C5.5284 5.24342 5.64384 5.16621 5.74104 5.06888L8.91993 1.88888C9.05333 1.74881 9.12668 1.56214 9.12432 1.36873C9.12196 1.17532 9.04408 0.990497 8.90731 0.853724C8.77054 0.716952 8.58571 0.639071 8.3923 0.636713C8.19889 0.634355 8.01222 0.707705 7.87216 0.841102L4.99993 3.7111L2.12771 0.841102Z'
+				 />
+		</g>
+		<defs>
+			<clipPath id='clip0_14_38'>
+				<rect transform='translate(0 0.222229)' height='5.55556' fill='white' width='10'/>
+			</clipPath>
+		</defs>
+	</svg>
+);
+export const SelectedArrow = (props:any) => (
+	<svg {...props} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' height='10'  width='10'>
+		<g clipPath='url(#clip0_78_2994)'>
+			<path
+				d='M1.2996 4.23968C1.01775 3.93614 0.543199 3.91857 0.239659 4.20042C-0.0638706 4.48227 -0.0814407 4.95682 0.200409 5.26035L3.45041 8.7603C3.7612 9.095 4.29647 9.0766 4.58346 8.7212L9.8335 2.22127C10.0937 1.89904 10.0435 1.42683 9.7213 1.16657C9.399 0.906301 8.9268 0.956541 8.6665 1.27877L3.96051 7.1053L1.2996 4.23968Z'
+			/>
+		</g>
+		<defs>
+			<clipPath id='clip0_78_2994'>
+				<rect fill='white' height='10' width='10'/>
+			</clipPath>
+		</defs>
+	</svg>
+);

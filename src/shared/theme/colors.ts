@@ -21,6 +21,7 @@ export const colors = {
 	purple700: '#2A2B51',
 	purple800: '#222342',
 	purple900: '#161722',
+	purple850:'#20212e',
 	critical: '#eb5757',
 	gray100: '#EEEFFC',
 	gray150: '#E0E1EC',
@@ -29,7 +30,6 @@ export const colors = {
 	gray300: '#858699',
 	gray350: '#6B6F76',
 	gray400: '#8D8BA3',
-	gray450: '#858699',
 	gray500: '#4C4F6B',
 	gray550: '#4D4F69',
 	gray600: '#444556',
@@ -64,20 +64,14 @@ const commonTheme = {
 		title2: '1.5rem',
 		mini: '0.75rem',
 	},
+	boxShadow:{
+		boxShadowBorder1:' rgb(78, 84, 117) 0px 0px 0px 1px',
+		boxShadow:'0px 0px 21px 11px rgba(0,0,0,0.15)'
+	},
 	border:{
-		regularPlus: '0.9375rem',
-		microPlus: '0.6875rem',
-		smallPlus: '0.8125rem',
-		largePlus: '1.125rem',
-		regular: '0.9375rem',
-		miniPlus: '0.75rem',
-		micro: '0.6875rem',
-		small: '0.8125rem',
-		large: '1.125rem',
-		title1: '2.25rem',
-		title3: '1.25rem',
-		title2: '1.5rem',
-		mini: '0.75rem',
+		regular:'6px',
+		large:'8px',
+		small:'4px'
 	},
 	purple100: colors.purple100,
 	purple150: colors.purple150,
@@ -89,6 +83,7 @@ const commonTheme = {
 	purple600: colors.purple600,
 	purple700: colors.purple700,
 	purple800: colors.purple800,
+	purple850: colors.purple850,
 	purple900:colors.purple900,
 	gray100: colors.gray100,
 	gray150: colors.gray150,
@@ -97,7 +92,6 @@ const commonTheme = {
 	gray300: colors.gray300,
 	gray350: colors.gray350,
 	gray400: colors.gray400,
-	gray450: colors.gray450,
 	gray500: colors.gray500,
 	gray550: colors.gray550,
 	gray600: colors.gray600,
@@ -118,39 +112,54 @@ const commonTheme = {
 };
 export const lightTheme = {
 	...commonTheme,
+	secondaryBgHover:colors.purple300,
 	neutral1: colors.neutral1_light,
-
+	
 	neutral2: colors.neutral2_light,
 	neutral3: colors.neutral3_light,
 	surface1: colors.surface1_light,
-
 	surface2: colors.surface2_light,
-	surface3: colors.surface3_light,
 	surface4: colors.surface4_light,
 	surface5: colors.surface5_light,
 	accent1: colors.accent1_light,
-
 	accent2: colors.accent2_light,
+	secondaryBg:colors.purple400,
+	surface3: colors.purple850,
 	critical: colors.critical,
-
 	background: colors.white,
+	surface7: colors.gray700,
 	success: colors.success,
+	surface6:colors.gray850,
+	color1: colors.gray100,
+	color2: colors.gray200,
+	color3:colors.gray300,
+	color5:colors.gray850,
 	scrim: colors.scrim,
+	
+	white:colors.white,
 };
 export const darkTheme = {
 	...commonTheme,
+	secondaryBgHover:colors.purple300,
 	neutral2: colors.neutral2_light,
 	neutral3: colors.neutral3_light,
 	surface1: colors.surface1_light,
-
 	accent1: colors.accent1_light,
 	accent2: colors.accent2_light,
+	secondaryBg:colors.purple400,
 	background: colors.gray900,
+	surface3: colors.purple850,
+	
 	critical: colors.critical,
 	surface2: colors.gray550,
-
-	surface3: colors.gray650,
-	surface4: colors.gray600,
-
+	surface4: colors.gray800,
 	surface5: colors.gray500,
+	surface7: colors.gray700,
+	surface6:colors.gray850,
+	color1: colors.gray100,
+	color2: colors.gray200,
+	color3:colors.gray300,
+	
+	white:colors.white
 };
+export type ThemeType = typeof darkTheme
