@@ -28,7 +28,8 @@ module.exports = {
 		'plugin:react/recommended',
 		'plugin:perfectionist/recommended-line-length',
 		'plugin:storybook/recommended',
-		'plugin:@tanstack/eslint-plugin-query/recommended'
+		'plugin:@tanstack/eslint-plugin-query/recommended',
+		'next'
 	],
 	overrides: [
 		{

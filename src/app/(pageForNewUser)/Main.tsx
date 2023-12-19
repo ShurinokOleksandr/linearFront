@@ -4,8 +4,8 @@ import { Typography, Flex, Box } from '@/shared/ui';
 import { Logout } from '@/entities/logout/Logout';
 import React, { ComponentProps } from 'react';
 import { useTheme } from 'styled-components';
-import { useRouter } from 'next/navigation';
 import { useSession } from '@/shared/hooks';
+import { useRouter } from 'next/navigation';
 
 export type MainProps = {
 	token?:string
