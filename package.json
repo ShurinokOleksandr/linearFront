@@ -10,7 +10,6 @@
     "lint:fix": "eslint --fix --ext .ts,.tsx .",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "test": "jest",
     "prepare": "husky install"
   },
   "husky": {
@@ -19,18 +18,7 @@
     }
   },
   "lint-staged": {
-    "*.js": [
-      "npm run lint:fix",
-      "git add"
-    ],
-    "*.tsx": [
-      "npm run lint:fix",
-      "git add"
-    ],
-    "*.ts": [
-      "npm run lint:fix",
-      "git add"
-    ]
+    "*": "prettier --write"
   },
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.18.6",
