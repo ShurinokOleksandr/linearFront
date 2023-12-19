@@ -1,5 +1,5 @@
 'use client';
-import { CustomLink, Typography, LogoIcon, Button, Center, Input, Title, Span, Flex, Box } from '@/shared/ui';
+import { CustomLink, Typography, LogoIcon, Button, Center, Input, Title, Span, Box } from '@/shared/ui';
 import { zodResolver } from '@hookform/resolvers/zod';
 import styled, { useTheme } from 'styled-components';
 import { externalApi } from '@/shared/utils';

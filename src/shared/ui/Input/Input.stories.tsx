@@ -106,7 +106,7 @@ export const NotValidUsername: Story = {
 };
 export const NotValidLengthOfPassword: Story = {
 	render: () => <NotValidLengthOfPasswordInput/>,
-	name:'Not Valid Length Of Password',
+	name:'Not Validі Length Of Password',
 };
 export const NotValidEqualsOfPassword: Story = {
 	render: () => <NotValidEqualsOfPasswordInput/>,

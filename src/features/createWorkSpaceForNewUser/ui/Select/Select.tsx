@@ -1,7 +1,6 @@
 'use client';
 import {
 	FloatingFocusManager,
-	useTransitionStyles,
 	useListNavigation,
 	useInteractions,
 	FloatingList,
@@ -10,7 +9,8 @@ import {
 	autoUpdate,
 	useDismiss,
 	useClick,
-	useRole, flip
+	useRole,
+	flip
 } from '@floating-ui/react';
 import React, { ComponentProps, useCallback, useState, useMemo } from 'react';
 import { DropDownArrowIcon, Button, Span, Box } from '@/shared/ui';
@@ -64,13 +64,6 @@ export const Select = ({ children,setValue,field }:SelectCompanySizeType) => {
 		listRef: elementsRef,
 		selectedIndex,
 		activeIndex
-	});
-	const { isMounted, styles } = useTransitionStyles(context, {
-		duration: {
-			close: 100,
-			open: 100,
-		},
-		
 	});
 	const typeahead = useTypeahead(context, {
 		onMatch: handleTypeaheadMatch,

@@ -3,12 +3,12 @@ import { CustomLink, Typography, LogoIcon, Button, Input, Title, Span, Box } fro
 import { externalApi } from '@/shared/utils/api/axiosInstance';
 import { zodResolver } from '@hookform/resolvers/zod';
 import styled, { useTheme } from 'styled-components';
-import React, { ChangeEvent, useState } from 'react';
-import { SignUpStore } from '@/app/signup/modal';
 import { useRouter } from 'next/navigation';
 import { observer } from 'mobx-react-lite';
 import { useForm } from 'react-hook-form';
+import React, { useState } from 'react';
 import * as z from 'zod';
+
 const signUpFromSchema = z
 	.object({
 		password: z.string().min(6,{ message: 'Length of password should be minimum 6 letters.' }),

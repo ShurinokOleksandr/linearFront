@@ -2,10 +2,10 @@ import type { NextRequest } from 'next/server';
 
 import { NextResponse } from 'next/server';
 
-export async function middleware(request: NextRequest,response:NextResponse) {
+export async function middleware(request: NextRequest) {
 	const cookie = request.cookies.get('access_token');
  	// console.log( request.nextUrl.pathname);
-	const dynamicPathRegex = /^\/[^\/]+\/team\/[^\/]+\/[^\/]+$/; // RegExp для динамического пути '/[workspacename]/team/[customId]/[statusIssue]'
+	const dynamicPathRegex = /^\/[^\\/]+\/team\/[^/]+\/[^/]+$/;
 	
 	if (!cookie && request.nextUrl.pathname === '/') {
 		return NextResponse.redirect(new URL('/login', request.url));
