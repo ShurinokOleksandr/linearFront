@@ -11,7 +11,6 @@ export type MainProps = {
 	token?:string
 } & ComponentProps<'div'>
 
-const a = 'as';
 export const Main = ({ children,token }:MainProps) => {
 	const workSpaces = useRequestAllWorkSpaceQuery(token);
 	const router = useRouter();
