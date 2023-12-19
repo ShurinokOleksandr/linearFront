@@ -1,6 +1,4 @@
-
-import { UserType } from '@/shared';
-
+import { UserType } from '@/shared/utils';
 export type WorkSpace = {
 	imageUrl: string | null;
 	teams: WorkSpaceTeam[];
