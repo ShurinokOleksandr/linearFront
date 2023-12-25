@@ -1,6 +1,6 @@
 'use client';
 import { CustomLink, Typography, LogoIcon, Button, Input, Title, Span, Box } from '@/shared/ui';
-import { externalApi } from '@/shared/utils/api/axiosInstance';
+import { externalApi } from '@/shared/utils/api/wretchInstance';
 import { zodResolver } from '@hookform/resolvers/zod';
 import styled, { useTheme } from 'styled-components';
 import { useRouter } from 'next/navigation';

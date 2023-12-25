@@ -1,8 +1,9 @@
 'use client';
 import { Typography, Button, Input, Flex, Span, Box } from '@/shared/ui';
-import { externalApi } from '@/shared/utils/api/axiosInstance';
+import { externalApi } from '@/shared/utils/api/wretchInstance';
 import { zodResolver } from '@hookform/resolvers/zod';
 import styled, { useTheme } from 'styled-components';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import React, { useState } from 'react';
 import * as z from 'zod';
@@ -27,18 +28,25 @@ export const CreateWorkSpaceForm = ({ token }:CreateWorkSpacePropsType) => {
 	const { formState:{ errors },handleSubmit,register,setError, setValue } = useForm<ValidationCreateWorkSpaceFormType>({
 		resolver:zodResolver(createWorkSpaceSchema)
 	});
-	
+	const router = useRouter();
 	const submitForm = async (data:ValidationCreateWorkSpaceFormType) => {
-		console.log(data);
+		console.log(token);
 		setIsLoading(true);
-		return externalApi
+		externalApi
 			.auth(`Bearer ${token}`)
 			.url('workspace/create')
 			.post(data)
 			.forbidden(error => setError('name',{ message:JSON.parse(error.message).message }))
-			.res(r => r.json())
+			.res(r => {
+				router.refresh();
+				return r.json();
+			})
 			.catch(() => setError('name',{ message:'Something went wrong' }))
 			.finally(() => setIsLoading(false));
+		
+	
+		
+		
 	};
 	const handleChangeWorkSpaceName = (value:string) => {
 		setValue('url',value.replace(/(?!\/)\s/g, '-').toLowerCase());
@@ -101,7 +109,7 @@ export const CreateWorkSpaceForm = ({ token }:CreateWorkSpacePropsType) => {
 							How large is your company?
 						</TitleForInput>
 						<Select
-							field='companySize' 
+							field='companySize'
 							setValue={setValue}
 						>
 							{
@@ -159,7 +167,7 @@ const Form = styled.form`
 const TitleForInput = styled(Typography)`
     color:${({ theme }) => theme.color2};
     margin-bottom: 10px;
-    
+
 `;
 const SpanUrl = styled(Span)`
     color:${({ theme }) => theme.color3};
@@ -169,7 +177,7 @@ const SpanUrl = styled(Span)`
     z-index: 10;
 `;
 const InputUrl = styled(Input)`
-	margin: 4px 0;
+    margin: 4px 0;
     background:${({ theme }) => theme.surface3}
 `;
 const Divider = styled.div`

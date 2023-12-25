@@ -16,8 +16,12 @@ export const Main = ({ children,token }:MainProps) => {
 	const router = useRouter();
 	const theme = useTheme();
 	const session = useSession();
+	if(workSpaces.isLoading){
+		return <div>Loading....</div>;
+	}
 	if(workSpaces.data && workSpaces.data.length){
 		router.replace(`/${workSpaces.data[0].url}/team/${workSpaces.data[0].teams[0].customId}/active`);
+		return <></>;
 	}
 	return (
 		<Box

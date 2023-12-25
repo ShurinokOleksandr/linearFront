@@ -1,4 +1,4 @@
-import { externalApi } from '@/shared/utils/api/axiosInstance';
+import { externalApi } from '@/shared/utils/api/wretchInstance';
 import { types } from 'mobx-state-tree';
 
 export const LoginStoreType = types
