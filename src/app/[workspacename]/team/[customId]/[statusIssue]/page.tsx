@@ -9,16 +9,19 @@ import { Wrapper } from './(components)/Wrapper';
 
 
 export default async function Home() {
- 	const access_token = cookies().get('access_token')?.value;
-	const refresh_token = cookies().get('refresh_token')?.value;
-	
+	const access_token = cookies().get('access_token');
+	const refresh_token = cookies().get('refresh_token');
+	 
 	await queryClient.prefetchQuery({
-		queryFn:() => requestAllWorkSpace(access_token),
-		queryKey:['workspace',refresh_token]
+		queryFn:() => requestAllWorkSpace(access_token?.value,refresh_token?.value),
+		queryKey:['workspace']
 	});
+	 
 	return (
 		<main>
-			<Wrapper refresh_token={refresh_token} access_token={access_token}/>
+			
+			<Wrapper refresh_token={refresh_token?.value} access_token={access_token?.value}/>
+			
 			<Logout />
 		</main>
 	);

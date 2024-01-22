@@ -1,4 +1,4 @@
-export type  UserType = {
+export type UserType = {
 	userImg:string | null
 	username: string;
 	message:string

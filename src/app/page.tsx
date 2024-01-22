@@ -9,20 +9,18 @@ import { Main } from './(pageForNewUser)/Main';
 
 
 export default async function Home() {
-	const cookieStore = cookies();
-	const access_token = cookieStore.get('access_token')?.value;
+	const access_token = cookies().get('access_token')?.value;
 	const refresh_token = cookies().get('refresh_token')?.value;
 	
 	await queryClient.prefetchQuery({
-		queryFn:() => requestAllWorkSpace(access_token),
-		queryKey:['workspace', refresh_token]
+		queryFn:() => requestAllWorkSpace(access_token,refresh_token),
+		queryKey:['workspace']
 	});
-	
-	
-	return (
+ 
+ 	return (
 		<HydrationBoundary state={dehydrate(queryClient)}>
 			<Main token={access_token}>
-				<CreateNewWorkSpace token={access_token}/>
+				<CreateNewWorkSpace refresh_token={refresh_token} access_token={access_token}/>
 			</Main>
 		</HydrationBoundary>
 	

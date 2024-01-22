@@ -1,6 +1,8 @@
 'use client';
 import { Typography, Button, Input, Flex, Span, Box } from '@/shared/ui';
+import { refreshToken } from '@/shared/utils/api/requests/refreshToken';
 import { externalApi } from '@/shared/utils/api/wretchInstance';
+import { useQueryClient } from '@tanstack/react-query';
 import { zodResolver } from '@hookform/resolvers/zod';
 import styled, { useTheme } from 'styled-components';
 import { useRouter } from 'next/navigation';
@@ -20,22 +22,30 @@ export const createWorkSpaceSchema = z.object({
 });
 export type ValidationCreateWorkSpaceFormType = z.infer<typeof createWorkSpaceSchema>
 export type CreateWorkSpacePropsType = {
-	token?:string
+	refresh_token?:string
+	access_token?:string
+	
 }
-export const CreateWorkSpaceForm = ({ token }:CreateWorkSpacePropsType) => {
+export const CreateWorkSpaceForm = ({ refresh_token,access_token }:CreateWorkSpacePropsType) => {
 	const theme = useTheme();
+	const queryClient = useQueryClient();
+	
 	const [isLoading,setIsLoading] = useState(false);
 	const { formState:{ errors },handleSubmit,register,setError, setValue } = useForm<ValidationCreateWorkSpaceFormType>({
 		resolver:zodResolver(createWorkSpaceSchema)
 	});
 	const router = useRouter();
 	const submitForm = async (data:ValidationCreateWorkSpaceFormType) => {
-		console.log(token);
+		console.log(access_token);
 		setIsLoading(true);
 		externalApi
-			.auth(`Bearer ${token}`)
+			.auth(`Bearer ${access_token}`)
 			.url('workspace/create')
 			.post(data)
+			.unauthorized(async () => {
+				queryClient.clear();
+				return refreshToken(refresh_token);
+			})
 			.forbidden(error => setError('name',{ message:JSON.parse(error.message).message }))
 			.res(r => {
 				router.refresh();
@@ -43,10 +53,6 @@ export const CreateWorkSpaceForm = ({ token }:CreateWorkSpacePropsType) => {
 			})
 			.catch(() => setError('name',{ message:'Something went wrong' }))
 			.finally(() => setIsLoading(false));
-		
-	
-		
-		
 	};
 	const handleChangeWorkSpaceName = (value:string) => {
 		setValue('url',value.replace(/(?!\/)\s/g, '-').toLowerCase());

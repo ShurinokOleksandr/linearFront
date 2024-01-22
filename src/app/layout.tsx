@@ -1,6 +1,8 @@
 import StyledComponentsRegistry from '@/provider/StyledProvider';
+import { SessionProvider } from '@/provider/ContextAuthProvider';
 import { ClientLayout } from '@/provider/ClientLayout';
 import { Inter } from 'next/font/google';
+import { cookies } from 'next/headers';
 import React from 'react';
 
 
@@ -12,6 +14,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 
 export default function RootLayout({ children }: { children: React.ReactNode}) {
+	const refresh_token = cookies().get('refresh_token')?.value;
 	return (
 		<html lang='en'>
 			<head>
@@ -19,7 +22,9 @@ export default function RootLayout({ children }: { children: React.ReactNode}) {
 			</head>
 			<body style={{ background:'linear-gradient(rgb(44, 45, 60) 0%, rgb(25, 26, 35) 50%)',overflow:'hidden',height:'100vh' }} className={inter.className}>
 				<StyledComponentsRegistry>
-					<ClientLayout>{children}</ClientLayout>
+					<SessionProvider refresh_token={refresh_token}>
+						<ClientLayout>{children}</ClientLayout>
+					</SessionProvider>
 				</StyledComponentsRegistry>
 			</body>
 		</html>

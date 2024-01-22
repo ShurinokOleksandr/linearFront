@@ -7,7 +7,7 @@ import React from 'react';
 import { HeaderCreateNewWorkSpace } from './HeaderCreateNewWorkSpace';
 import { CreateWorkSpaceForm } from './CreateWorkSpaceForm';
 
-export const CreateNewWorkSpace = ({ token }:{token?:string}) => {
+export const CreateNewWorkSpace = ({ refresh_token,access_token }:{refresh_token?:string,access_token?:string}) => {
 	
 	return (
 		 <AnimatedBlock
@@ -19,7 +19,7 @@ export const CreateNewWorkSpace = ({ token }:{token?:string}) => {
 				 maxWidth='460px'
 			 >
 				 <HeaderCreateNewWorkSpace/>
-				 <CreateWorkSpaceForm token={token}/>
+				 <CreateWorkSpaceForm refresh_token={refresh_token} access_token={access_token}/>
 			 </Box>
 		 </AnimatedBlock>
 	);

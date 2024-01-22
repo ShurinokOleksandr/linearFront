@@ -8,11 +8,13 @@ import ReactQueryProvider from './reactQueryProvider/ReactQueryProvider';
 
 export const  ClientLayout = ({ children }: { children: React.ReactNode}) => {
 	return (
+		 
 		<ReactQueryProvider>
 			<ThemeProvider theme={darkTheme}>
 				{ children }
 			</ThemeProvider>
 		</ReactQueryProvider>
+		 
 	);
 };
 

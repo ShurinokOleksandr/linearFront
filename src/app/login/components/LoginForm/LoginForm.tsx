@@ -33,11 +33,11 @@ export const LoginForm =  observer(( ) => {
 		setIsLoading(true);
 		const res = await externalApi
 			.url('auth/login')
-			.options({
-				next: {
-					revalidate: 0,
-				},
-			})
+			// .options({
+			// 	next: {
+			// 		revalidate: 0,
+			// 	},
+			// })
 			.post({ username: data.username, password: data.password })
 			.notFound(error =>setError('username', { message:JSON.parse(error.message).message }))
 			.forbidden(error => setError('password', { message:JSON.parse(error.message).message }))

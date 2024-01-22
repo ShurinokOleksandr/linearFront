@@ -13,7 +13,7 @@ function inlineRules(rulesObj: CSSProperties) {
 }
 
 export const CommonProps = styled.div.withConfig({
-	shouldForwardProp: (prop) => !['marginBottom','marginRight','marginLeft','marginTop','textAlign'].includes(prop),
+	shouldForwardProp: (prop) => !['backgroundColor','justifyContent','marginBottom','borderRadius','marginRight','marginLeft','marginTop','textAlign','boxShadow','maxWidth'].includes(prop),
 })<DefaultElementProps>`
     user-select: ${({ userSelect }) => userSelect ?  userSelect   : 'none'};
     border-radius:${({ borderRadius }) => borderRadius && borderRadius} ;

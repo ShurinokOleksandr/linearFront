@@ -11,8 +11,8 @@ export default async function  Home() {
 	const access_token = cookies().get('access_token')?.value;
 	const refresh_token = cookies().get('refresh_token')?.value;
 	await queryClient.prefetchQuery({
-		queryFn:() => requestAllTeam(access_token),
-		queryKey:['team', refresh_token]
+		queryFn:() => requestAllTeam(access_token,refresh_token),
+		queryKey:['team']
 	});
 	
 	return (
