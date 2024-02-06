@@ -9,11 +9,11 @@ export type Kebab<T extends string, A extends string = ''> =
 		A
 export type KebabKeys<T> = { [K in keyof T as K extends string ? Kebab<K> : K]: T[K] };
 function inlineRules(rulesObj: CSSProperties) {
-	return Object.entries(rulesObj).map(([property, value]) => `${property}: ${value};`).join('');
+    return Object.entries(rulesObj).map(([property, value]) => `${property}: ${value};`).join('');
 }
 
 export const CommonProps = styled.div.withConfig({
-	shouldForwardProp: (prop) => !['backgroundColor','justifyContent','marginBottom','borderRadius','marginRight','marginLeft','marginTop','textAlign','boxShadow','maxWidth'].includes(prop),
+    shouldForwardProp: (prop) => !['backgroundColor','justifyContent','marginBottom','borderRadius','marginRight','marginLeft','marginTop','textAlign','boxShadow','maxWidth'].includes(prop),
 })<DefaultElementProps>`
     user-select: ${({ userSelect }) => userSelect ?  userSelect   : 'none'};
     border-radius:${({ borderRadius }) => borderRadius && borderRadius} ;

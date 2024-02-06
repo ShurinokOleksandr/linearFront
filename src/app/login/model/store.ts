@@ -2,75 +2,75 @@ import { externalApi } from '@/shared/utils/api/wretchInstance';
 import { types } from 'mobx-state-tree';
 
 export const LoginStoreType = types
-	.model('Login Store',{
-		usernameValidationError:types.string,
-		passwordValidationError:types.string,
-		password :types.string,
-		username:types.string,
-		loading: false,
-	})
-	.actions(self => ({
-		async  submitLogin(){
-			if(self.password.length >= 6 && self.username) {
-				this.setLoading(true);
-				this.setUsernameValidationError('');
-				this.setPasswordValidationError('');
+    .model('Login Store',{
+        usernameValidationError:types.string,
+        passwordValidationError:types.string,
+        password :types.string,
+        username:types.string,
+        loading: false,
+    })
+    .actions(self => ({
+        async  submitLogin(){
+            if(self.password.length >= 6 && self.username) {
+                this.setLoading(true);
+                this.setUsernameValidationError('');
+                this.setPasswordValidationError('');
 				
-				return externalApi
-					.url('auth/login')
-					.options({
-						next: {
-							revalidate: 0,
-						},
+                return externalApi
+                    .url('auth/login')
+                    .options({
+                        next: {
+                            revalidate: 0,
+                        },
 						
-					})
-					.post({ username: self.username, password: self.password })
-					.notFound(error => this.setUsernameValidationError(JSON.parse(error.message).message))
-					.forbidden(error => this.setPasswordValidationError(JSON.parse(error.message).message))
-					.res(r => r.json())
-					.catch(() => this.setUsernameValidationError('Something got wrong'))
-					.finally(() => this.setLoading(false));
+                    })
+                    .post({ username: self.username, password: self.password })
+                    .notFound(error => this.setUsernameValidationError(JSON.parse(error.message).message))
+                    .forbidden(error => this.setPasswordValidationError(JSON.parse(error.message).message))
+                    .res(r => r.json())
+                    .catch(() => this.setUsernameValidationError('Something got wrong'))
+                    .finally(() => this.setLoading(false));
 				
-			}
-			if(!self.username.length) {
-				this.setUsernameValidationError('Please enter an username for login.');
-			}
-			if(self.password.length < 6) {
-				this.setPasswordValidationError('Length of password should be minimum 6 letters');
-			}
-			if(!self.username.length) {
-				this.setUsernameValidationError('Please enter an username for login.');
-			}
-			if(self.password.length < 6) {
-				this.setPasswordValidationError('Length of password should be minimum 6 letters.');
-			}
-		},
-		setPassword(password:string){
-			self.password = password;
-			if(self.password.length >= 6){
-				this.setPasswordValidationError('');
-			}
-		},
-		setUsername(username:string) {
-			self.username = username;
-			this.setUsernameValidationError('');
-		},
-		setUsernameValidationError(error:string){
-			self.usernameValidationError = error ;
-		},
-		setPasswordValidationError(error:string){
-			self.passwordValidationError = error ;
-		},
-		setLoading(state:boolean){
-			self.loading = state;
-		}
-	}));
+            }
+            if(!self.username.length) {
+                this.setUsernameValidationError('Please enter an username for login.');
+            }
+            if(self.password.length < 6) {
+                this.setPasswordValidationError('Length of password should be minimum 6 letters');
+            }
+            if(!self.username.length) {
+                this.setUsernameValidationError('Please enter an username for login.');
+            }
+            if(self.password.length < 6) {
+                this.setPasswordValidationError('Length of password should be minimum 6 letters.');
+            }
+        },
+        setPassword(password:string){
+            self.password = password;
+            if(self.password.length >= 6){
+                this.setPasswordValidationError('');
+            }
+        },
+        setUsername(username:string) {
+            self.username = username;
+            this.setUsernameValidationError('');
+        },
+        setUsernameValidationError(error:string){
+            self.usernameValidationError = error ;
+        },
+        setPasswordValidationError(error:string){
+            self.passwordValidationError = error ;
+        },
+        setLoading(state:boolean){
+            self.loading = state;
+        }
+    }));
 export const LoginStore = LoginStoreType.create({
-	usernameValidationError: '',
-	passwordValidationError:'',
-	loading :false,
-	username: '',
-	password: '',
+    usernameValidationError: '',
+    passwordValidationError:'',
+    loading :false,
+    username: '',
+    password: '',
 });
 
 // class LoginStore {

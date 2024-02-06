@@ -10,34 +10,34 @@ export type OptionItemType = {
 	label: string
 }
 export const OptionItem = ({ label }:OptionItemType) => {
-	const {
-		selectedIndex,
-		getItemProps,
-		handleSelect,
-		activeIndex
-	} = React.useContext(SelectContext);
-	const theme = useTheme();
-	const { index, ref } = useListItem({ label });
+    const {
+        selectedIndex,
+        getItemProps,
+        handleSelect,
+        activeIndex
+    } = React.useContext(SelectContext);
+    const theme = useTheme();
+    const { index, ref } = useListItem({ label });
 	
-	const isActive = activeIndex === index;
-	const isSelected = selectedIndex === index;
-	return (
-		<Option
-			style={{
-				backgroundColor:isSelected ? theme.surface7 : ''
-			}}
-			aria-selected={isActive && isSelected}
-			tabIndex={isActive ? 0 : -1}
-			role='option'
-			ref={ref}
-			{...getItemProps({
-				onClick: () => handleSelect(index)
-			})}
-		>
-			{label}
-			{isSelected ? <SelectedArrow fill={theme.surface1} /> : <></>}
-		</Option>
-	);
+    const isActive = activeIndex === index;
+    const isSelected = selectedIndex === index;
+    return (
+        <Option
+            style={{
+                backgroundColor:isSelected ? theme.surface7 : ''
+            }}
+            aria-selected={isActive && isSelected}
+            tabIndex={isActive ? 0 : -1}
+            role='option'
+            ref={ref}
+            {...getItemProps({
+                onClick: () => handleSelect(index)
+            })}
+        >
+            {label}
+            {isSelected ? <SelectedArrow fill={theme.surface1} /> : <></>}
+        </Option>
+    );
 };
 
 const Option = styled(Box)`

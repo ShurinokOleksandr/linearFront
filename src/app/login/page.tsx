@@ -1,11 +1,7 @@
-import { LoginForm } from '@/app/login/components/LoginForm/LoginForm';
 import React from 'react';
 
-export default async function  Auth() {
-	
- 	return (
-		    <LoginForm />
-	);
-}
+import { LoginForm } from './components/LoginForm';
 
- 
+export default async function Auth() {
+    return <LoginForm />;
+}

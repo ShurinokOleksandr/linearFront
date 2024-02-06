@@ -8,29 +8,29 @@ import React from 'react';
 
 
 export const Logout = observer(() => {
-	const queryClient = useQueryClient();
-	const router = useRouter();
-	const logOut =  async () => {
-		const res =  await fetch('/routes/logout');
-		if(res.ok){
-			LoginStore.setPassword('');
-			LoginStore.setUsername('');
-			router.refresh();
-			router.push('/login');
-			queryClient.clear();
-		}
+    const queryClient = useQueryClient();
+    const router = useRouter();
+    const logOut =  async () => {
+        const res =  await fetch('/routes/logout');
+        if(res.ok){
+            LoginStore.setPassword('');
+            LoginStore.setUsername('');
+            router.refresh();
+            router.push('/login');
+            queryClient.clear();
+        }
 
-	};
+    };
 	 
  	return (
-		<div>
-			<Button
-				variant='primary'
-				onClick={logOut}
-			>
+        <div>
+            <Button
+                variant='primary'
+                onClick={logOut}
+            >
 				Log out
-			</Button>
-		</div>
-	);
+            </Button>
+        </div>
+    );
 });
 

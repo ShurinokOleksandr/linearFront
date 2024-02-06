@@ -14,7 +14,7 @@ export type DefaultButtonProps = {
 } & ButtonHTMLAttributes<HTMLButtonElement> & CSS.Properties & ComponentProps<'button'>
 
 export const DefaultButton = styled(CommonProps).withConfig({
-	shouldForwardProp: (prop) => !['borderRadius'].includes(prop),
+    shouldForwardProp: (prop) => !['borderRadius'].includes(prop),
 }).attrs({ as: 'button' })<DefaultButtonProps>`
     background: ${({ background, theme }) => background ? background : theme.gray800};
     display: inline-flex;
@@ -56,9 +56,9 @@ export const DefaultButton = styled(CommonProps).withConfig({
 `;
 
 export const Button = ({  isLoading,children, ...props }:DefaultButtonProps) => {
-	return (
-		<DefaultButton  {...props}>
-			{isLoading ? <Span marginRight='5px'><LoadingIcon height='50' width='50'/></Span> : children}
-		</DefaultButton>
-	);
+    return (
+        <DefaultButton  {...props}>
+            {isLoading ? <Span marginRight='5px'><LoadingIcon height='50' width='50'/></Span> : children}
+        </DefaultButton>
+    );
 };

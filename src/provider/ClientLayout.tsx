@@ -7,14 +7,14 @@ import React from 'react';
 import ReactQueryProvider from './reactQueryProvider/ReactQueryProvider';
 
 export const  ClientLayout = ({ children }: { children: React.ReactNode}) => {
-	return (
+    return (
 		 
-		<ReactQueryProvider>
-			<ThemeProvider theme={darkTheme}>
-				{ children }
-			</ThemeProvider>
-		</ReactQueryProvider>
+        <ReactQueryProvider>
+            <ThemeProvider theme={darkTheme}>
+                { children }
+            </ThemeProvider>
+        </ReactQueryProvider>
 		 
-	);
+    );
 };
 

@@ -8,5 +8,5 @@ export default function Auth() {
 		 <Suspense fallback={<Loading/>}>
 			 <SignUpForm/>
 		 </Suspense>
-	);
+    );
 }

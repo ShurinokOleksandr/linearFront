@@ -15,15 +15,15 @@ export type DecodeJwtType = {
 const Context = createContext({});
 
 export const SessionProvider = ({ refresh_token, children }: SessionProviderProps) => {
-	const [user, setUser] = useState<DecodeJwtType | null>(null);
-	useEffect(() => {
-		if (refresh_token) {
-			const data = jose.decodeJwt(refresh_token) ;
-			setUser(data as DecodeJwtType);
-		}
-	}, [refresh_token]);
+    const [user, setUser] = useState<DecodeJwtType | null>(null);
+    useEffect(() => {
+        if (refresh_token) {
+            const data = jose.decodeJwt(refresh_token) ;
+            setUser(data as DecodeJwtType);
+        }
+    }, [refresh_token]);
 	
-	return <Context.Provider value={{ setUser, user }}>{children}</Context.Provider>;
+    return <Context.Provider value={{ setUser, user }}>{children}</Context.Provider>;
 	
 };
 

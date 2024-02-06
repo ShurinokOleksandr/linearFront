@@ -8,8 +8,8 @@ import React from 'react';
 import { CustomLink } from './CustomLink';
 
 const meta: Meta<typeof CustomLink> = {
-	title:'Components/CustomLink',
-	component: CustomLink,
+    title:'Components/CustomLink',
+    component: CustomLink,
 };
 
 export default meta;
@@ -17,15 +17,15 @@ type Story = StoryObj<typeof CustomLink>;
 
 
 const PrimaryCustomLink = ( ) => {
-	const theme = useTheme();
-	return <>
-		<CustomLink color={theme.purple300} href='/login'>
+    const theme = useTheme();
+    return <>
+        <CustomLink color={theme.purple300} href='/login'>
 			Log in
-		</CustomLink>,
-	</>;
+        </CustomLink>,
+    </>;
 };
 
 export const Primary: Story = {
-	render: () =><PrimaryCustomLink />,
-	name:'Default CustomLink',
+    render: () =><PrimaryCustomLink />,
+    name:'Default CustomLink',
 };

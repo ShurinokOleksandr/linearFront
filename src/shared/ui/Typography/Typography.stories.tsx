@@ -9,8 +9,8 @@ import React from 'react';
 import { Typography } from './Typography';
 
 const meta: Meta<typeof Typography> = {
-	title:'Components/Typography',
-	component: Typography,
+    title:'Components/Typography',
+    component: Typography,
 };
 
 export default meta;
@@ -18,22 +18,22 @@ type Story = StoryObj<typeof Typography>;
 
 
 const PrimaryTypography = ( ) => {
-	const theme = useTheme();
-	return <>
-		<Typography
-			fontSize='12px'
-		>
-			<Span marginRight='5px'>
+    const theme = useTheme();
+    return <>
+        <Typography
+            fontSize='12px'
+        >
+            <Span marginRight='5px'>
 				Do you have not an account?
-			</Span>
-			<CustomLink color={theme.purple300} href='/signup'>
+            </Span>
+            <CustomLink color={theme.purple300} href='/signup'>
 				Sign Up
-			</CustomLink>
-		</Typography>
-	</>;
+            </CustomLink>
+        </Typography>
+    </>;
 };
 
 export const Primary: Story = {
-	render: () => <PrimaryTypography /> ,
-	name:'Default Typography',
+    render: () => <PrimaryTypography /> ,
+    name:'Default Typography',
 };
