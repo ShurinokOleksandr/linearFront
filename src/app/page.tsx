@@ -10,6 +10,7 @@ import { Main } from './(pageForNewUser)/Main';
 export default async function Home() {
     const access_token = cookies().get('access_token')?.value;
     const refresh_token = cookies().get('refresh_token')?.value;
+
     await queryClient.prefetchQuery({
         queryFn: () => requestAllWorkSpace(access_token, refresh_token),
         queryKey: ['workspace'],
