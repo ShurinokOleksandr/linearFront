@@ -15,6 +15,7 @@ export default async function Home() {
         queryFn: () => requestAllWorkSpace(access_token, refresh_token),
         queryKey: ['workspace'],
     });
+
     return (
         <HydrationBoundary state={dehydrate(queryClient)}>
             <Main access_token={access_token}>
