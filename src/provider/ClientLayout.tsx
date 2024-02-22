@@ -4,17 +4,12 @@ import { ThemeProvider } from 'styled-components';
 import { darkTheme } from '@/shared/theme/colors';
 import React from 'react';
 
-import ReactQueryProvider from './reactQueryProvider/ReactQueryProvider';
+import ReactQueryProvider from './react-query-provider/ReactQueryProvider';
 
-export const  ClientLayout = ({ children }: { children: React.ReactNode}) => {
+export const ClientLayout = ({ children }: { children: React.ReactNode }) => {
     return (
-		 
         <ReactQueryProvider>
-            <ThemeProvider theme={darkTheme}>
-                { children }
-            </ThemeProvider>
+            <ThemeProvider theme={darkTheme}>{children}</ThemeProvider>
         </ReactQueryProvider>
-		 
     );
 };
-

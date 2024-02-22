@@ -1,5 +1,4 @@
-import { externalApi } from '@/shared/utils';
+import wretch from 'wretch';
 
-export const refreshToken = (refresh_token?: string) => {
-    return externalApi.auth(`Bearer ${refresh_token}`).get('auth/refresh');
-};
+export const refreshToken = ( ) => wretch().get('/routes/refresh-token');
+

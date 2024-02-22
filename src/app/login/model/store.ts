@@ -1,74 +1,90 @@
-import { externalApi } from '@/shared/utils/api/wretchInstance';
+import { externalApi } from '@/shared/utils';
 import { types } from 'mobx-state-tree';
 
 export const LoginStoreType = types
-    .model('Login Store',{
-        usernameValidationError:types.string,
-        passwordValidationError:types.string,
-        password :types.string,
-        username:types.string,
+    .model('Login Store', {
+        usernameValidationError: types.string,
+        passwordValidationError: types.string,
+        password: types.string,
+        username: types.string,
         loading: false,
     })
-    .actions(self => ({
-        async  submitLogin(){
-            if(self.password.length >= 6 && self.username) {
+    .actions((self) => ({
+        async submitLogin() {
+            if (self.password.length >= 6 && self.username) {
                 this.setLoading(true);
                 this.setUsernameValidationError('');
                 this.setPasswordValidationError('');
-				
+
                 return externalApi
                     .url('auth/login')
                     .options({
                         next: {
                             revalidate: 0,
                         },
-						
                     })
                     .post({ username: self.username, password: self.password })
-                    .notFound(error => this.setUsernameValidationError(JSON.parse(error.message).message))
-                    .forbidden(error => this.setPasswordValidationError(JSON.parse(error.message).message))
-                    .res(r => r.json())
-                    .catch(() => this.setUsernameValidationError('Something got wrong'))
+                    .notFound((error) =>
+                        this.setUsernameValidationError(
+                            JSON.parse(error.message).message
+                        )
+                    )
+                    .forbidden((error) =>
+                        this.setPasswordValidationError(
+                            JSON.parse(error.message).message
+                        )
+                    )
+                    .res((r) => r.json())
+                    .catch(() =>
+                        this.setUsernameValidationError('Something got wrong')
+                    )
                     .finally(() => this.setLoading(false));
-				
             }
-            if(!self.username.length) {
-                this.setUsernameValidationError('Please enter an username for login.');
+            if (!self.username.length) {
+                this.setUsernameValidationError(
+                    'Please enter an username for login.'
+                );
             }
-            if(self.password.length < 6) {
-                this.setPasswordValidationError('Length of password should be minimum 6 letters');
+            if (self.password.length < 6) {
+                this.setPasswordValidationError(
+                    'Length of password should be minimum 6 letters'
+                );
             }
-            if(!self.username.length) {
-                this.setUsernameValidationError('Please enter an username for login.');
+            if (!self.username.length) {
+                this.setUsernameValidationError(
+                    'Please enter an username for login.'
+                );
             }
-            if(self.password.length < 6) {
-                this.setPasswordValidationError('Length of password should be minimum 6 letters.');
+            if (self.password.length < 6) {
+                this.setPasswordValidationError(
+                    'Length of password should be minimum 6 letters.'
+                );
             }
         },
-        setPassword(password:string){
+        setPassword(password: string) {
             self.password = password;
-            if(self.password.length >= 6){
+            if (self.password.length >= 6) {
                 this.setPasswordValidationError('');
             }
         },
-        setUsername(username:string) {
+        setUsername(username: string) {
             self.username = username;
             this.setUsernameValidationError('');
         },
-        setUsernameValidationError(error:string){
-            self.usernameValidationError = error ;
+        setUsernameValidationError(error: string) {
+            self.usernameValidationError = error;
         },
-        setPasswordValidationError(error:string){
-            self.passwordValidationError = error ;
+        setPasswordValidationError(error: string) {
+            self.passwordValidationError = error;
         },
-        setLoading(state:boolean){
+        setLoading(state: boolean) {
             self.loading = state;
-        }
+        },
     }));
 export const LoginStore = LoginStoreType.create({
     usernameValidationError: '',
-    passwordValidationError:'',
-    loading :false,
+    passwordValidationError: '',
+    loading: false,
     username: '',
     password: '',
 });
@@ -79,10 +95,10 @@ export const LoginStore = LoginStoreType.create({
 // 	loading = false;
 // 	username = '';
 // 	password = '';
-// 	userStore  ;
-// 	constructor(userStore: userStoreType) {
+// 	user-store  ;
+// 	constructor(user-store: userStoreType) {
 // 		makeAutoObservable(this);
-// 		this.userStore = userStore;
+// 		this.user-store = user-store;
 // 	}
 // 	async  submitLogin(){
 // 		if(this.password.length >= 6 && this.username){
@@ -105,7 +121,7 @@ export const LoginStore = LoginStoreType.create({
 // 				});
 // 				const data = await result.json();
 // 				if(result.ok){
-// 					this.userStore.setUser(data);
+// 					this.user-store.setUser(data);
 // 					return data;
 // 				}
 // 				if(result.status === 404){
@@ -153,4 +169,4 @@ export const LoginStore = LoginStoreType.create({
 // 	}
 //
 // }
-// export default new LoginStore(userStore);
+// export default new LoginStore(user-store);

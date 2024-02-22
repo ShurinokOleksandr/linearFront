@@ -1,4 +1,4 @@
-export * from './CustomLink/CustomLink';
+export * from '@/shared/ui/Custom-link/CustomLink';
 export * from './Icons/Icons';
 export * from './Box/Box';
 export * from './Typography/Typography';

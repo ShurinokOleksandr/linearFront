@@ -1,3 +1,3 @@
-export { refreshToken } from './requests/refreshToken/index';
-export { externalApi } from './wretchInstance';
+export * from './instance';
+export * from './hooks';
 export * from './requests';

@@ -1,7 +1,5 @@
-import React from 'react';
-
-import { LoginForm } from './components/LoginForm';
+import { LoginContainer } from './ui/login-container';
 
 export default async function Auth() {
-    return <LoginForm />;
+    return <LoginContainer />;
 }
