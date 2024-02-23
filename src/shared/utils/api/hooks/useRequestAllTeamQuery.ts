@@ -1,12 +1,10 @@
-import { requestAllTeam } from '@/shared/utils/api/requests/team/all';
-import { useQueryClient, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
+import { requestAllTeam } from '@/shared/utils';
 
 
-export const useRequestAllTeamQuery = (access_token?:string,refresh_token?:string) => {
-    const queryClient = useQueryClient();
-	
+export const useRequestAllTeamQuery = () => {
     return useQuery({
-        queryFn: () => requestAllTeam(access_token, refresh_token,queryClient),
+        queryFn: () => requestAllTeam(),
         queryKey: ['team']
     });
 };

@@ -2,10 +2,10 @@ import { requestAllWorkSpace } from '@/shared/utils';
 import { useQuery } from '@tanstack/react-query';
 
 
-export const useRequestAllWorkSpaceQuery = (access_token?:string) => {
+export const useRequestAllWorkSpaceQuery = () => {
 
     return useQuery({
-        queryFn: () => requestAllWorkSpace(access_token),
+        queryFn:  requestAllWorkSpace ,
         queryKey: ['workspace'],
     });
 };

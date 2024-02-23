@@ -1,14 +1,12 @@
-import { externalApi } from '@/shared/utils';
-import wretch from 'wretch';
+import { getAccessToken, externalApi } from '@/shared/utils';
 
 import { Team } from '../all/types';
 
-export const requestAllTeam = (
-    access_token?: string,
-): Promise<Team[]> => {
+export const requestAllTeam = async (): Promise<Team[]> => {
+    const { token } = await getAccessToken();
+
     return externalApi
-        .auth(`Bearer ${access_token}`)
+        .auth(`Bearer ${token}`)
         .get('team')
-        .unauthorized(() => wretch().get('/routes/refresh-token'))
         .json((json) => json);
 };

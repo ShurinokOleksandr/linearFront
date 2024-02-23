@@ -1,15 +1,13 @@
 'use client';
 import { useSessionState } from '@/provider/ContextAuthProvider';
 import { useRequestAllWorkSpaceQuery } from '@/shared/utils/api';
-import { Typography, Flex, Box } from '@/shared/ui';
+import { Typography, Loading, Flex, Box } from '@/shared/ui';
 import React, { ComponentProps } from 'react';
 import { useTheme } from 'styled-components';
 import { useRouter } from 'next/navigation';
 import { Logout } from '@/entities';
 
-export type MainProps = {
-    access_token?: string;
-} & ComponentProps<'div'>;
+export type MainProps = NonNullable<unknown> & ComponentProps<'div'>;
 
 export const UserBlock = () => {
     const theme = useTheme();
@@ -30,13 +28,13 @@ export const UserBlock = () => {
         </Box>
     );
 };
-export const Main = ({ access_token, children }: MainProps) => {
-    const workSpaces = useRequestAllWorkSpaceQuery(access_token);
+export const Main = ({ children }: MainProps) => {
+    const workSpaces = useRequestAllWorkSpaceQuery();
     const router = useRouter();
     const theme = useTheme();
 
     if (workSpaces.isLoading) {
-        return <div>Loading....</div>;
+        return <Loading/>;
     }
     if (workSpaces.data && workSpaces.data.length) {
         router.replace(

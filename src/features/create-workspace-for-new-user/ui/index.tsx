@@ -10,15 +10,16 @@ import { CreateNewWorkSpace } from './CreateNewWorkSpace';
 export const CreateWorkSpace = () => {
     const router = useRouter();
     const createWorkSpace = useMutation({
-        onSuccess:  ({ data }) => {
+        onSuccess:  (data) => {
             router.push(
-                `${data.name}/team/${data.customId
+                `${data.url}/team/${data.name
                     .substring(0, 3)
                     .toUpperCase()}/active`
             );
         },
         mutationFn: requestCreateWorkspace,
     });
+
     return (
         <CreateNewWorkSpace>
             <CreateWorkSpaceForm

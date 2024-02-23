@@ -1,6 +1,6 @@
 import type { NextRequest } from 'next/server';
 
-import { BASE_URL } from '@/shared/utils/api/instance';
+import { BASE_URL } from '@/shared/utils/constants';
 import { NextResponse } from 'next/server';
 
 export async function middleware(request: NextRequest) {
@@ -22,7 +22,6 @@ export async function middleware(request: NextRequest) {
         return NextResponse.redirect(new URL('/', request.url));
     }
     if (!access_token && refresh_token) {
-        // wretch().get('/routes/refresh-token');
         const res = await fetch(`${BASE_URL}auth/refresh`, {
             headers: {
                 Authorization: `Bearer ${refresh_token.value}`,
@@ -44,21 +43,20 @@ export async function middleware(request: NextRequest) {
             priority:'medium',
             httpOnly: true,
             maxAge:  3600,
-            path: '/',
         });
 
         return response;
     }
 }
-export const config = {
-    matcher: [
-        '/main/:path*',
-        '/login/:path*',
-        '/signup/:path*',
-        '/:path*',
-        '/(.*)/team/(.*)/active',
-    ],
-};
 // export const config = {
-//     matcher: ['/((?!api|_next/static|_next/image|.*\\.png$).*)'],
+//     matcher: [
+//         '/main/:path*',
+//         '/login/:path*',
+//         '/signup/:path*',
+//         '/:path*',
+//         '/(.*)/team/(.*)/active',
+//     ],
 // };
+export const config = {
+    matcher: ['/((?!api|_next/static|_next/image|.*\\.png$).*)'],
+};

@@ -2,7 +2,7 @@ import { ValidationLoginForm } from '@/app/login';
 import { externalApi } from '@/shared/utils';
 
 export const loginRequest = async (data: ValidationLoginForm) => {
-    return await externalApi
+    return externalApi
         .url('auth/login')
         .post({ username: data.username, password: data.password })
         .notFound((error) => {

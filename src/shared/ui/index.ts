@@ -1,4 +1,4 @@
-export * from '@/shared/ui/Custom-link/CustomLink';
+export * from './Custom-link/CustomLink';
 export * from './Icons/Icons';
 export * from './Box/Box';
 export * from './Typography/Typography';
@@ -8,3 +8,4 @@ export * from './Flex/Flex';
 export * from './Input/Input';
 export * from './Span/Span';
 export * from './Center/Center';
+export * from './loading/Loading';

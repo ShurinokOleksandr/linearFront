@@ -1,17 +1,20 @@
-import wretch from 'wretch';
+import { getAccessToken, externalApi } from '@/shared/utils';
 
 import { ValidationCreateWorkSpaceFormType } from './types';
 
-export const requestCreateWorkspace = async (
+export const requestCreateWorkspace =  async (
     data: ValidationCreateWorkSpaceFormType
 ) => {
-    return wretch('/routes/create-workspace')
+    const { token } = await getAccessToken();
+    return externalApi
+        .auth(   `Bearer ${token}`)
+        .url('workspace/create')
         .post(data)
         .forbidden((error) => {
-            throw new Error(JSON.parse(error.message).data.message);
+            throw new Error(JSON.parse(error.message).message);
         })
         .badRequest((error) => {
-            throw new Error(JSON.parse(error.message).data.message);
+            throw new Error(JSON.parse(error.message).message);
         })
         .res(async (res) => {
             const data = await res.json();
