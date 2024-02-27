@@ -1,5 +1,5 @@
 export type UserType = {
-	userImg:string | null
+	userImg:string | null;
 	username: string;
 	message:string
 	id: string;

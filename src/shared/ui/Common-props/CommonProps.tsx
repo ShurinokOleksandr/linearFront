@@ -15,6 +15,7 @@ function inlineRules(rulesObj: CSSProperties) {
 export const CommonProps = styled.div.withConfig({
     shouldForwardProp: (prop) => !['backgroundColor','justifyContent','marginBottom','borderRadius','marginRight','marginLeft','marginTop','textAlign','boxShadow','maxWidth'].includes(prop),
 })<DefaultElementProps>`
+    line-height: ${({  lineHeight }) => lineHeight ?  lineHeight   : 'normal'} ;
     user-select: ${({ userSelect }) => userSelect ?  userSelect   : 'none'};
     border-radius:${({ borderRadius }) => borderRadius && borderRadius} ;
     height:${({ height }) => height &&  height};

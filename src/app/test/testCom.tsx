@@ -3,15 +3,12 @@ import { useRequestAllTeamQuery } from '@/shared/utils/api/hooks/useRequestAllTe
 import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react';
 
-export const TestCom = ({
-    refresh_token,
-    access_token,
+export const TestCom = ({ access_token,
 }: {
-    refresh_token?: string;
     access_token?: string;
 }) => {
     const router = useRouter();
-    const response = useRequestAllTeamQuery(access_token, refresh_token);
+    const response = useRequestAllTeamQuery();
     useEffect(() => {
         router.refresh();
     }, [access_token]);

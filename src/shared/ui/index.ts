@@ -9,3 +9,4 @@ export * from './Input/Input';
 export * from './Span/Span';
 export * from './Center/Center';
 export * from './loading/Loading';
+export * from './Avatar/Avatar';

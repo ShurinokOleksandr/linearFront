@@ -67,7 +67,8 @@ const commonTheme = {
     boxShadow: {
         boxShadowBorder1: ' rgb(78, 84, 117) 0px 0px 0px 1px',
         boxShadow: '0px 0px 21px 11px rgba(0,0,0,0.15)',
-    },
+        boxShadow1:'rgba(0, 0, 0, 0.1) 0px 2px 4px;', 
+    },  
     border: {
         regular: '6px',
         large: '8px',
@@ -126,6 +127,7 @@ export const lightTheme = {
     secondaryBg: colors.purple400,
     surface3: colors.purple850,
     critical: colors.critical,
+    surface75: colors.gray750,
     background: colors.white,
     surface7: colors.gray700,
     surface6: colors.gray850,
@@ -149,6 +151,7 @@ export const darkTheme = {
     background: colors.gray900,
     surface3: colors.purple850,
     critical: colors.critical,
+    surface75: colors.gray750,
     surface2: colors.gray550,
     surface4: colors.gray800,
     surface5: colors.gray500,

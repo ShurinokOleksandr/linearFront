@@ -9,22 +9,29 @@ import reset from 'styled-reset';
 export const GlobalStyle = createGlobalStyle`
     ${normalize},
     ${reset}
+    a {
+        color: inherit;  
+        text-decoration: inherit;  
+    }
     * {
         padding: 0;
         box-sizing: border-box;
 
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
         }
+
         ::-webkit-scrollbar-track {
             background: transparent;
         }
+
         ::-webkit-scrollbar-thumb {
-            background: #2b3757;
-            border-radius: 15px;
+            background: #35364d;
+            border-radius: 1px;
         }
+
         ::-webkit-scrollbar-thumb:hover {
-            background: #384870;
+            background: rgba(53, 54, 77, 0.6);
         }
     }
 `;

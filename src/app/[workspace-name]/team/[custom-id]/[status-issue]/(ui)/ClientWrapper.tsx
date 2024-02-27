@@ -49,7 +49,6 @@ export const ClientWrapper = () => {
                 style={{ height: '100dvh' }}
             >
                 <div style={{ maxWidth: 330, minWidth: 220 }} ref={refSplit}>
-
                     <Navbar />
                 </div>
                 <div style={{ minWidth: 80, flex: 1 }}>

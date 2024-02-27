@@ -6,7 +6,7 @@ module.exports = {
         '@babel/preset-flow',
     ],
     plugins: [
-        'babel-plugin-styled-ui',
+        // 'babel-plugin-styled-ui',
         '@babel/plugin-proposal-class-properties',
     ],
 };
