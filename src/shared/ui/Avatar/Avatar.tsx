@@ -6,7 +6,6 @@ type AvatarProps = Omit<ImgHTMLAttributes<HTMLImageElement>, 'src'> & {
     src?:string | null;
 }
 
-
 export const Avatar = ({ src,...props  }:AvatarProps) => {
     return (
         <AvatarWrapper>
